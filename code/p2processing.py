@@ -10,7 +10,7 @@ def output3DRefinement(atlases, DLSeg, param_dir, tmps_dir, dofs_dir, subject_di
     ind = 0
     #atlasUsedNo = len(atlases)
     atlasUsedNo = 1
-        
+
     for i in range(atlasUsedNo):
          
         if mirtk:
@@ -22,12 +22,12 @@ def output3DRefinement(atlases, DLSeg, param_dir, tmps_dir, dofs_dir, subject_di
                       '-dofout {3}/shapeffd_{5}_{6}.dof.gz' 
                       .format(DLSeg, atlases[i], param_dir, dofs_dir, savedInd[i], i, fr))
             
-            #os.system('mirtk transform-image '
-            #          '{0} '
-            #          '{1}/seg_sa_SR_{4}_{5}.nii.gz ' 
-            #          '-dofin {2}/shapeffd_{4}_{5}.dof.gz '
-            #          '-target {3}/sa_SR_{5}.nii.gz -interp NN'  
-            #          .format(atlases[i], tmps_dir, dofs_dir, subject_dir, i, fr)) 
+            os.system('mirtk transform-image '
+                      '{0} '
+                      '{1}/seg_sa_SR_{4}_{5}.nii.gz ' 
+                      '-dofin {2}/shapeffd_{4}_{5}.dof.gz '
+                      '-target {3}/sa_SR_{5}.nii.gz -interp NN'  
+                      .format(atlases[i], tmps_dir, dofs_dir, subject_dir, i, fr)) 
 
         else:
             os.system('nreg '
