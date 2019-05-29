@@ -202,19 +202,18 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                 print("\n\n ... EXIT output3DRefinement \n\n\n")
                 #######################################################
                 
-                #if mirtk:
+                if mirtk:
                     
                     #######################################################
-                    #print("\n\n ... ENTER refineFusionResults \n\n\n   ")
-                    #refineFusionResults(subject_dir, 'seg_sa_SR_{0}.nii.gz'.format(fr), 2) 
-                    #print("\n\n ... EXIT refineFusionResults \n\n\n")
+                    print("\n\n ... ENTER refineFusionResults \n\n\n   ")
+                    refineFusionResults(subject_dir, 'seg_sa_SR_{0}.nii.gz'.format(fr), 2) 
+                    print("\n\n ... EXIT refineFusionResults \n\n\n")
                     #######################################################
-                #else:
-
+                else:
                     #######################################################
-                    #print("\n\n ... ENTER refineFusionResults \n\n\n   ")
-                    #refineFusionResults(subject_dir, 'seg_sa_SR_{0}.nii.gz'.format(fr), 2) 
-                    #print("\n\n ... EXIT refineFusionResults")
+                    print("\n\n ... ENTER refineFusionResults \n\n\n   ")
+                    refineFusionResults(subject_dir, 'seg_sa_SR_{0}.nii.gz'.format(fr), 2) 
+                    print("\n\n ... EXIT refineFusionResults")
                     #######################################################
                 
                  
