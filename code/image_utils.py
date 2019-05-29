@@ -415,7 +415,8 @@ def topSimilarAtlasShapeSelection(atlases, atlas_landmarks, subject_landmarks, t
     
     topSimilarAtlases_list = []
     
-    atlasNo = len(atlases)
+    #atlasNo = len(atlases)
+    atlasNo = 1
     
     os.system('rm {0}/shapenmi*.txt'.format(tmps_dir))
     
