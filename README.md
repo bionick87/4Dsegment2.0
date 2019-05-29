@@ -10,14 +10,18 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
 #  Debug phase - Nicolo Savioli 
 
 * [Test/debug](Test/debug) The code results in testing in a small UK Biobank sample.
-    * Problem with the multiatlasreg3D function, I'm identifying where the code fails:
-        * topSimilarAtlasShapeSelection function [pass]
-        * formHighResolutionImg function [pass]
-        * output3DRefinement function [pass]
-        * refineFusionResults (with mirtk) [pass]
-        * convertImageSegment [in testing]
-        * outputVolumes
-        * moveVolumes 
+    * multiatlasreg3D in test (29/05/19)
+	    * Problem with the multiatlasreg3D function, I'm identifying where the code fails:
+	        * topSimilarAtlasShapeSelection function [pass]
+	        * formHighResolutionImg function [pass] 
+	            *  Fixed problem on path that caused an error in the resample, I then tested the whole pipline for ES and ED, with a single atlas (debug phase). now in testing with all atlas.
+	        * output3DRefinement function [pass]
+	        * refineFusionResults (with mirtk) [pass]
+	        * convertImageSegment [pass]
+	        * outputVolumes [pass]
+	        * moveVolumes  [pass]
+
+
 
 # Overview
 The files in this repository are organized into 3 directories:

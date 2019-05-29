@@ -4,12 +4,20 @@ from multiprocessing import Pool
 from functools import partial
 from image_utils import *  
 
+
+
+
 def output3DRefinement(atlases, DLSeg, param_dir, tmps_dir, dofs_dir, subject_dir, savedInd, fr, mirtk):
    
     segstring = ''
     ind = 0
-    #atlasUsedNo = len(atlases)
-    atlasUsedNo = 1
+    atlasUsedNo = len(atlases)
+    ###############
+    # For debug   #
+    ################
+    
+
+    #atlasUsedNo = 1
 
     for i in range(atlasUsedNo):
          
@@ -112,9 +120,15 @@ def apply_PC(subject, data_dir, param_dir, atlases_list, landmarks_list, mirtk):
         print('  {0} is not a valid directory, do nothing'.format(subject_dir))
         
 
+
+
+
 ##############################
 # DEBUG Nicolo Savioli       #
 ##############################
+
+
+
 
 
 def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
@@ -166,8 +180,8 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
             
             subject_landmarks = '{0}/landmarks.vtk'.format(subject_dir)
             
-            #for fr in ['ED', 'ES']:
-            for fr in [ 'ES']:        
+            for fr in ['ED', 'ES']:
+            #for fr in [ 'ES']:        
             
                 DLSeg = '{0}/seg_sa_{1}.nii.gz'.format(segs_dir, fr)
                 
@@ -233,9 +247,9 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                 #######################################################
 
                 #######################################################
-                #print("\n\n ... ENTER moveVolumes \n\n\n   ")
-                #moveVolumes(subject_dir, sizes_dir, fr)
-                #print("\n\n ... EXIT moveVolumes")
+                print("\n\n ... ENTER moveVolumes \n\n\n   ")
+                moveVolumes(subject_dir, sizes_dir, fr)
+                print("\n\n ... EXIT moveVolumes")
                 #######################################################
                            
             print('  finish 3D nonrigid-registering one subject {}'.format(subject))
