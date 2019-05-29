@@ -166,8 +166,9 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
             
             subject_landmarks = '{0}/landmarks.vtk'.format(subject_dir)
             
-            for fr in ['ED', 'ES']:
-                    
+            #for fr in ['ED', 'ES']:
+            for fr in [ 'ES']:        
+            
                 DLSeg = '{0}/seg_sa_{1}.nii.gz'.format(segs_dir, fr)
                 
                 if not os.path.exists(DLSeg):
