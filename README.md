@@ -11,10 +11,13 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
 
 * [Test/debug](Test/debug) The code results in testing in a small UK Biobank sample.
     * Problem with the multiatlasreg3D function, I'm identifying where the code fails:
-        * topSimilarAtlasShapeSelection function [OK]
-
-
-   
+        * topSimilarAtlasShapeSelection function [In testing]
+        * formHighResolutionImg function 
+        * output3DRefinement function 
+        * refineFusionResults (with mirtk)
+        * convertImageSegment
+        * outputVolumes
+        * moveVolumes 
 
 # Overview
 The files in this repository are organized into 3 directories:

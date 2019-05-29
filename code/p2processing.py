@@ -176,57 +176,57 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                     continue
                 
                 #######################################################
-                #print("\n\n ... ENTER                           topSimilarAtlasShapeSelection \n\n\n   ") 
-                #topSimilarAtlases_list, savedInd = topSimilarAtlasShapeSelection(atlases_list[fr], landmarks_list[fr], 
-                #                                   subject_landmarks, tmps_dir, dofs_dir, DLSeg, param_dir, 3) 
-                #print("\n\n ...EXIT topSimilarAtlasShapeSelection  \n\n\n    ")
+                print("\n\n ... ENTER                           topSimilarAtlasShapeSelection \n\n\n   ") 
+                topSimilarAtlases_list, savedInd = topSimilarAtlasShapeSelection(atlases_list[fr], landmarks_list[fr], 
+                                                   subject_landmarks, tmps_dir, dofs_dir, DLSeg, param_dir, 3) 
+                print("\n\n ...EXIT topSimilarAtlasShapeSelection DONE \n\n\n    ")
                 #######################################################
 
                 #######################################################
-                print("\n\n ... ENTER  formHighResolutionImg \n\n\n   ") 
-                formHighResolutionImg(subject_dir, fr)
-                print("\n\n ... EXIT formHighResolutionImg \n\n\n   ")
+                #print("\n\n ... ENTER  formHighResolutionImg \n\n\n   ") 
+                #formHighResolutionImg(subject_dir, fr)
+                #print("\n\n ... EXIT formHighResolutionImg \n\n\n   ")
                 #######################################################
                 
                 
                 #######################################################
-                print("\n\n ... ENTER output3DRefinement \n\n\n   ")
-                output3DRefinement(topSimilarAtlases_list, DLSeg, param_dir, tmps_dir, dofs_dir, subject_dir, savedInd, fr, mirtk)
-                print("\n\n ... EXIT output3DRefinement \n\n\n")
+                #print("\n\n ... ENTER output3DRefinement \n\n\n   ")
+                #output3DRefinement(topSimilarAtlases_list, DLSeg, param_dir, tmps_dir, dofs_dir, subject_dir, savedInd, fr, mirtk)
+                #print("\n\n ... EXIT output3DRefinement \n\n\n")
                 #######################################################
                 
-                if mirtk:
+                #if mirtk:
                     
                     #######################################################
-                    print("\n\n ... ENTER refineFusionResults \n\n\n   ")
-                    refineFusionResults(subject_dir, 'seg_sa_SR_{0}.nii.gz'.format(fr), 2) 
-                    print("\n\n ... EXIT refineFusionResults \n\n\n")
+                    #print("\n\n ... ENTER refineFusionResults \n\n\n   ")
+                    #refineFusionResults(subject_dir, 'seg_sa_SR_{0}.nii.gz'.format(fr), 2) 
+                    #print("\n\n ... EXIT refineFusionResults \n\n\n")
                     #######################################################
-                else:
+                #else:
 
                     #######################################################
-                    print("\n\n ... ENTER refineFusionResults \n\n\n   ")
-                    refineFusionResults(subject_dir, 'seg_sa_SR_{0}.nii.gz'.format(fr), 2) 
-                    print("\n\n ... EXIT refineFusionResults")
+                    #print("\n\n ... ENTER refineFusionResults \n\n\n   ")
+                    #refineFusionResults(subject_dir, 'seg_sa_SR_{0}.nii.gz'.format(fr), 2) 
+                    #print("\n\n ... EXIT refineFusionResults")
                     #######################################################
                 
                  
                 #######################################################
-                print("\n\n ... ENTER convertImageSegment \n\n\n   ")
-                convertImageSegment(subject_dir, fr)
-                print("\n\n ... EXIT convertImageSegment \n\n\n   ")
+                #print("\n\n ... ENTER convertImageSegment \n\n\n   ")
+                #convertImageSegment(subject_dir, fr)
+                #print("\n\n ... EXIT convertImageSegment \n\n\n   ")
                 #######################################################
 
                 #######################################################
-                print("\n\n ... ENTER outputVolumes \n\n\n   ")
-                outputVolumes(subject_dir, data_dir, subject, fr)
-                print("\n\n ... EXIT outputVolumes  \n\n\n")
+                #print("\n\n ... ENTER outputVolumes \n\n\n   ")
+                #outputVolumes(subject_dir, data_dir, subject, fr)
+                #print("\n\n ... EXIT outputVolumes  \n\n\n")
                 #######################################################
 
                 #######################################################
-                print("\n\n ... ENTER moveVolumes \n\n\n   ")
-                moveVolumes(subject_dir, sizes_dir, fr)
-                print("\n\n ... EXIT moveVolumes")
+                #print("\n\n ... ENTER moveVolumes \n\n\n   ")
+                #moveVolumes(subject_dir, sizes_dir, fr)
+                #print("\n\n ... EXIT moveVolumes")
                 #######################################################
                                 
             print('  finish 3D nonrigid-registering one subject {}'.format(subject))
