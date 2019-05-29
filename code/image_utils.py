@@ -167,9 +167,9 @@ def formHighResolutionImg(subject_dir, fr):
   
 
 
-  
+
     os.system('resample ' 
-              '{0}/sa_{1}.nii.gz '
+              '{0}/sizes/sa_{1}.nii.gz '
               '{0}/sa_SR_{1}.nii.gz '
               '-size 1.25 1.25 2'
               .format(subject_dir, fr))
