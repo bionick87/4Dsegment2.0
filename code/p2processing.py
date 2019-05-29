@@ -179,6 +179,13 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                 print("\n\n ... ENTER                           topSimilarAtlasShapeSelection \n\n\n   ") 
                 topSimilarAtlases_list, savedInd = topSimilarAtlasShapeSelection(atlases_list[fr], landmarks_list[fr], 
                                                    subject_landmarks, tmps_dir, dofs_dir, DLSeg, param_dir, 3) 
+
+                print("\n\n ... topSimilarAtlases_list: \n\n\n    ")
+                print(topSimilarAtlases_list)
+                print("\n\n ... savedInd: \n\n\n    ")
+                print(savedInd)
+
+
                 print("\n\n ...EXIT topSimilarAtlasShapeSelection DONE \n\n\n    ")
                 #######################################################
 
@@ -187,7 +194,6 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                 #formHighResolutionImg(subject_dir, fr)
                 #print("\n\n ... EXIT formHighResolutionImg \n\n\n   ")
                 #######################################################
-                
                 
                 #######################################################
                 #print("\n\n ... ENTER output3DRefinement \n\n\n   ")
