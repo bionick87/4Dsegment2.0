@@ -110,7 +110,12 @@ def apply_PC(subject, data_dir, param_dir, atlases_list, landmarks_list, mirtk):
     else:  
         print('  {0} is not a valid directory, do nothing'.format(subject_dir))
         
-       
+
+##############################
+# DEBUG Nicolo Savioli       #
+##############################
+
+
 def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                
     print('Select all the shape atlases for 3D multi-atlas registration')
@@ -169,46 +174,59 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                     print(' segmentation {0} does not exist. Skip.'.format(DLSeg))
                 
                     continue
-                 
+                
+                #######################################################
+                print("\n\n ... ENTER                           topSimilarAtlasShapeSelection \n\n\n   ") 
                 topSimilarAtlases_list, savedInd = topSimilarAtlasShapeSelection(atlases_list[fr], landmarks_list[fr], 
                                                    subject_landmarks, tmps_dir, dofs_dir, DLSeg, param_dir, 3) 
+                print("\n\n ...EXIT topSimilarAtlasShapeSelection  \n\n\n    ")
+                #######################################################
 
-
-                print("\n\n ... topSimilarAtlasShapeSelection")
-                      
+                #######################################################
+                print("\n\n ... ENTER  formHighResolutionImg \n\n\n   ") 
                 formHighResolutionImg(subject_dir, fr)
-
-                print("\n\n ... formHighResolutionImg")
+                print("\n\n ... EXIT formHighResolutionImg \n\n\n   ")
+                #######################################################
                 
+                
+                #######################################################
+                print("\n\n ... ENTER output3DRefinement \n\n\n   ")
                 output3DRefinement(topSimilarAtlases_list, DLSeg, param_dir, tmps_dir, dofs_dir, subject_dir, savedInd, fr, mirtk)
-
-                print("\n\n ... output3DRefinement")
+                print("\n\n ... EXIT output3DRefinement \n\n\n")
+                #######################################################
                 
                 if mirtk:
                     
+                    #######################################################
+                    print("\n\n ... ENTER refineFusionResults \n\n\n   ")
                     refineFusionResults(subject_dir, 'seg_sa_SR_{0}.nii.gz'.format(fr), 2) 
-
-                    print("\n\n ... refineFusionResults")
-            
-#                    clearBaseManbrance(subject_dir, 'seg_lvsa_SR_{0}.nii.gz'.format(fr)) 
-#            
-#                    refineFusionResults(subject_dir, 'seg_lvsa_SR_{0}.nii.gz'.format(fr), 2) 
+                    print("\n\n ... EXIT refineFusionResults \n\n\n")
+                    #######################################################
                 else:
-                    
+
+                    #######################################################
+                    print("\n\n ... ENTER refineFusionResults \n\n\n   ")
                     refineFusionResults(subject_dir, 'seg_sa_SR_{0}.nii.gz'.format(fr), 2) 
-
-                    print("\n\n ... refineFusionResults")
-            
-                convertImageSegment(subject_dir, fr)
-
-                print("\n\n ... convertImageSegment")
-            
-                outputVolumes(subject_dir, data_dir, subject, fr)
-
-                print("\n\n ... outputVolumes")
+                    print("\n\n ... EXIT refineFusionResults")
+                    #######################################################
                 
-                moveVolumes(subject_dir, sizes_dir, fr)
+                 
+                #######################################################
+                print("\n\n ... ENTER convertImageSegment \n\n\n   ")
+                convertImageSegment(subject_dir, fr)
+                print("\n\n ... EXIT convertImageSegment \n\n\n   ")
+                #######################################################
 
-                print("\n\n ... moveVolumes")
+                #######################################################
+                print("\n\n ... ENTER outputVolumes \n\n\n   ")
+                outputVolumes(subject_dir, data_dir, subject, fr)
+                print("\n\n ... EXIT outputVolumes  \n\n\n")
+                #######################################################
+
+                #######################################################
+                print("\n\n ... ENTER moveVolumes \n\n\n   ")
+                moveVolumes(subject_dir, sizes_dir, fr)
+                print("\n\n ... EXIT moveVolumes")
+                #######################################################
                                 
             print('  finish 3D nonrigid-registering one subject {}'.format(subject))
