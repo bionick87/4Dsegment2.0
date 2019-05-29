@@ -130,7 +130,7 @@ def removeSegsAboveBase(data_dir, output_name):
     file = open('{0}/landmarks.txt'.format(data_dir), 'r') 
     A = file.read()
     tmp = np.zeros(18)  
-    i, c = 0, 0
+    i, c = 0, 0\
     for p in range(len(A)):
         if A[p] == ' ' or A[p] == '\n':
             tmp[i] = np.float32(A[c:p])
@@ -158,19 +158,26 @@ def removeSegsAboveBase(data_dir, output_name):
     
 
 def formHighResolutionImg(subject_dir, fr): 
-    
-    os.system('resample ' 
-              '{0}/sa_{1}.nii.gz '
-              '{0}/sa_SR_{1}.nii.gz '
-              '-size 1.25 1.25 2'
-              .format(subject_dir, fr))
         
-#    os.system('enlarge_image '
-#              '{0}/lvsa_SR_{1}.nii.gz '
-#              '{0}/lvsa_SR_{1}.nii.gz '
-#              '-z 20 '
-#              '-value 0'
-#              .format(subject_dir, fr))
+  
+    
+    input_file = '{0}/sa_{1}.nii.gz'.format(subject_dir, fr)
+
+    print(os.path.isfile(input_file))
+
+
+    #os.system('resample ' 
+    #          '{0}/sa_{1}.nii.gz '
+    #          '{0}/sa_SR_{1}.nii.gz '
+    #          '-size 1.25 1.25 2'
+    #          .format(subject_dir, fr))
+        
+    #    os.system('enlarge_image '
+    #              '{0}/lvsa_SR_{1}.nii.gz '
+    #              '{0}/lvsa_SR_{1}.nii.gz '
+    #              '-z 20 '
+    #              '-value 0'
+    #              .format(subject_dir, fr))
 
     
 def convertImageSegment(data_dir, fr):
