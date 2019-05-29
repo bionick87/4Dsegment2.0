@@ -157,12 +157,19 @@ def removeSegsAboveBase(data_dir, output_name):
     nib.save(nim2, '{0}/{1}'.format(data_dir, output_name))
     
 
-def formHighResolutionImg(subject_dir, fr):   
-    os.system('resample ' 
-              '{0}/sa_{1}.nii.gz '
-              '{0}/sa_SR_{1}.nii.gz '
-              '-size 1.25 1.25 2'
-              .format(subject_dir, fr))
+def formHighResolutionImg(subject_dir, fr): 
+
+    print("###############################################")
+    input_file = '{0}/sa_{1}.nii.gz'.format(subject_dir, fr)
+    print(input_file)
+    print(os.path.isfile(input_file))
+    print("###############################################")
+  
+    #os.system('resample ' 
+    #          '{0}/sa_{1}.nii.gz '
+    #          '{0}/sa_SR_{1}.nii.gz '
+    #          '-size 1.25 1.25 2'
+    #          .format(subject_dir, fr))
         
 #    os.system('enlarge_image '
 #              '{0}/lvsa_SR_{1}.nii.gz '
