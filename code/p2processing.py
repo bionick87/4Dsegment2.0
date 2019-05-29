@@ -223,9 +223,9 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                 #######################################################
 
                 #######################################################
-                #print("\n\n ... ENTER outputVolumes \n\n\n   ")
-                #outputVolumes(subject_dir, data_dir, subject, fr)
-                #print("\n\n ... EXIT outputVolumes  \n\n\n")
+                print("\n\n ... ENTER outputVolumes \n\n\n   ")
+                outputVolumes(subject_dir, data_dir, subject, fr)
+                print("\n\n ... EXIT outputVolumes  \n\n\n")
                 #######################################################
 
                 #######################################################
