@@ -10,7 +10,8 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
 #  Debug phase - Nicolo Savioli 
 
 * [Test/debug](Test/debug) The code results in testing in a small UK Biobank sample.
-    * Problem with the multiatlasreg3D function, I'm identifying where the code fails.
+    * Problem with the multiatlasreg3D function, I'm identifying where the code fails:
+        * topSimilarAtlasShapeSelection function [OK]
 
 
    

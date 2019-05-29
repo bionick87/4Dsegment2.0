@@ -176,10 +176,10 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                     continue
                 
                 #######################################################
-                print("\n\n ... ENTER                           topSimilarAtlasShapeSelection \n\n\n   ") 
-                topSimilarAtlases_list, savedInd = topSimilarAtlasShapeSelection(atlases_list[fr], landmarks_list[fr], 
-                                                   subject_landmarks, tmps_dir, dofs_dir, DLSeg, param_dir, 3) 
-                print("\n\n ...EXIT topSimilarAtlasShapeSelection  \n\n\n    ")
+                #print("\n\n ... ENTER                           topSimilarAtlasShapeSelection \n\n\n   ") 
+                #topSimilarAtlases_list, savedInd = topSimilarAtlasShapeSelection(atlases_list[fr], landmarks_list[fr], 
+                #                                   subject_landmarks, tmps_dir, dofs_dir, DLSeg, param_dir, 3) 
+                #print("\n\n ...EXIT topSimilarAtlasShapeSelection  \n\n\n    ")
                 #######################################################
 
                 #######################################################
