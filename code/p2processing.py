@@ -8,7 +8,8 @@ def output3DRefinement(atlases, DLSeg, param_dir, tmps_dir, dofs_dir, subject_di
    
     segstring = ''
     ind = 0
-    atlasUsedNo = len(atlases)
+    #atlasUsedNo = len(atlases)
+    atlasUsedNo = 1
         
     for i in range(atlasUsedNo):
          
