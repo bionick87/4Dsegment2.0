@@ -198,7 +198,7 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                 #######################################################
 
                
-                '''  
+                
                 #######################################################
                 print("\n\n ... ENTER output3DRefinement \n\n\n   ")
                 output3DRefinement(topSimilarAtlases_list, DLSeg, param_dir, tmps_dir, dofs_dir, subject_dir, savedInd, fr, mirtk)
@@ -236,5 +236,5 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                 #moveVolumes(subject_dir, sizes_dir, fr)
                 #print("\n\n ... EXIT moveVolumes")
                 #######################################################
-                '''            
+                           
             print('  finish 3D nonrigid-registering one subject {}'.format(subject))
