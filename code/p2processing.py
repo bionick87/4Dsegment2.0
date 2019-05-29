@@ -196,9 +196,9 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                 #######################################################
                 
                 #######################################################
-                #print("\n\n ... ENTER output3DRefinement \n\n\n   ")
-                #output3DRefinement(topSimilarAtlases_list, DLSeg, param_dir, tmps_dir, dofs_dir, subject_dir, savedInd, fr, mirtk)
-                #print("\n\n ... EXIT output3DRefinement \n\n\n")
+                print("\n\n ... ENTER output3DRefinement \n\n\n   ")
+                output3DRefinement(topSimilarAtlases_list, DLSeg, param_dir, tmps_dir, dofs_dir, subject_dir, savedInd, fr, mirtk)
+                print("\n\n ... EXIT output3DRefinement \n\n\n")
                 #######################################################
                 
                 #if mirtk:
