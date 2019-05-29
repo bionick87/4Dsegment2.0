@@ -24,7 +24,7 @@ FLAGS = tf.app.flags.FLAGS
 
 
 tf.app.flags.DEFINE_integer('coreNo', 18,   'Number of CPUs.')
-tf.app.flags.DEFINE_string('test_dir',      '/cardiac/UKBB_40616/1003323_test/1003323',
+tf.app.flags.DEFINE_string('test_dir',      '/cardiac/UKBB_40616/test_ukbb',
                                             'Path to the test set directory, under which images are organised in '
                                             'subdirectories for each subject.')
 tf.app.flags.DEFINE_string('model_path',    '/model/FCN_sa', 'Path to the saved trained model.')
