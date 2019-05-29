@@ -13,8 +13,8 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
     * Problem with the multiatlasreg3D function, I'm identifying where the code fails:
         * topSimilarAtlasShapeSelection function [pass]
         * formHighResolutionImg function [pass]
-        * output3DRefinement function [In testing]
-        * refineFusionResults (with mirtk)
+        * output3DRefinement function [pass]
+        * refineFusionResults (with mirtk) [in testing]
         * convertImageSegment
         * outputVolumes
         * moveVolumes 
