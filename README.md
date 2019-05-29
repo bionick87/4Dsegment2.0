@@ -7,12 +7,13 @@
 The code in this repository implements 4D*segment*, a pipeline for carrying out deep learning segmentation in UK Biobank, non-rigid co-registration, mesh generation and motion tracking using raw grey-scale cardiac MRI data in NIfTI format. The implementation was first trained using manual annotations and then deployed on pulmonary hypertension (PH) patients to produce segmentation labels and computational meshes. The whole process is fully automated without any manual input. 
 
 
-# Testing phases
+#  Debug phases - Nicolo Savioli 
 
-* Test code in small sample (28-May-2019)
+* [Test/debug](Test/debug) The code results in testing in a small UK Biobank sample.
+    * Problem with the multiatlasreg3D function, I'm identifying where the code fails.
+
+
    
-
-
 
 # Overview
 The files in this repository are organized into 3 directories:
