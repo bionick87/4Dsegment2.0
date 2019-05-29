@@ -203,7 +203,6 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                 #######################################################
                 
                 if mirtk:
-                    
                     #######################################################
                     print("\n\n ... ENTER refineFusionResults \n\n\n   ")
                     refineFusionResults(subject_dir, 'seg_sa_SR_{0}.nii.gz'.format(fr), 2) 
@@ -218,9 +217,9 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                 
                  
                 #######################################################
-                #print("\n\n ... ENTER convertImageSegment \n\n\n   ")
-                #convertImageSegment(subject_dir, fr)
-                #print("\n\n ... EXIT convertImageSegment \n\n\n   ")
+                print("\n\n ... ENTER convertImageSegment \n\n\n   ")
+                convertImageSegment(subject_dir, fr)
+                print("\n\n ... EXIT convertImageSegment \n\n\n   ")
                 #######################################################
 
                 #######################################################

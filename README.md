@@ -14,8 +14,8 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
         * topSimilarAtlasShapeSelection function [pass]
         * formHighResolutionImg function [pass]
         * output3DRefinement function [pass]
-        * refineFusionResults (with mirtk) [in testing]
-        * convertImageSegment
+        * refineFusionResults (with mirtk) [pass]
+        * convertImageSegment [in testing]
         * outputVolumes
         * moveVolumes 
 
