@@ -159,9 +159,11 @@ def removeSegsAboveBase(data_dir, output_name):
 
 def formHighResolutionImg(subject_dir, fr): 
 
-
+    print("###############################################")
     input_file = '{0}/sa_{1}.nii.gz'.format(subject_dir, fr)
+    print(input_file)
     print(os.path.isfile(input_file))
+    print("###############################################")
   
     #os.system('resample ' 
     #          '{0}/sa_{1}.nii.gz '
