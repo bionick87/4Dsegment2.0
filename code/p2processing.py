@@ -190,9 +190,9 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                 #######################################################
 
                 #######################################################
-                #print("\n\n ... ENTER  formHighResolutionImg \n\n\n   ") 
-                #formHighResolutionImg(subject_dir, fr)
-                #print("\n\n ... EXIT formHighResolutionImg \n\n\n   ")
+                print("\n\n ... ENTER  formHighResolutionImg \n\n\n   ") 
+                formHighResolutionImg(subject_dir, fr)
+                print("\n\n ... EXIT formHighResolutionImg \n\n\n   ")
                 #######################################################
                 
                 #######################################################
