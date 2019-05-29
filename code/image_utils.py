@@ -165,9 +165,6 @@ def formHighResolutionImg(subject_dir, fr):
     print(os.path.isfile(input_file))
     print("###############################################")
   
-
-
-
     os.system('resample ' 
               '{0}/sizes/sa_{1}.nii.gz '
               '{0}/sa_SR_{1}.nii.gz '
