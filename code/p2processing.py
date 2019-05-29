@@ -172,14 +172,23 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                  
                 topSimilarAtlases_list, savedInd = topSimilarAtlasShapeSelection(atlases_list[fr], landmarks_list[fr], 
                                                    subject_landmarks, tmps_dir, dofs_dir, DLSeg, param_dir, 3) 
+
+
+                print("\n\n ... topSimilarAtlasShapeSelection")
                       
                 formHighResolutionImg(subject_dir, fr)
+
+                print("\n\n ... formHighResolutionImg")
                 
                 output3DRefinement(topSimilarAtlases_list, DLSeg, param_dir, tmps_dir, dofs_dir, subject_dir, savedInd, fr, mirtk)
+
+                print("\n\n ... output3DRefinement")
                 
                 if mirtk:
                     
                     refineFusionResults(subject_dir, 'seg_sa_SR_{0}.nii.gz'.format(fr), 2) 
+
+                    print("\n\n ... refineFusionResults")
             
 #                    clearBaseManbrance(subject_dir, 'seg_lvsa_SR_{0}.nii.gz'.format(fr)) 
 #            
@@ -187,11 +196,19 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
                 else:
                     
                     refineFusionResults(subject_dir, 'seg_sa_SR_{0}.nii.gz'.format(fr), 2) 
+
+                    print("\n\n ... refineFusionResults")
             
                 convertImageSegment(subject_dir, fr)
+
+                print("\n\n ... convertImageSegment")
             
                 outputVolumes(subject_dir, data_dir, subject, fr)
+
+                print("\n\n ... outputVolumes")
                 
                 moveVolumes(subject_dir, sizes_dir, fr)
+
+                print("\n\n ... moveVolumes")
                                 
             print('  finish 3D nonrigid-registering one subject {}'.format(subject))

@@ -28,8 +28,7 @@ tf.app.flags.DEFINE_string('test_dir',      '/cardiac/UKBB_40616/1003323_test',
                                             'Path to the test set directory, under which images are organised in '
                                             'subdirectories for each subject.')
 tf.app.flags.DEFINE_string('model_path',    '/model/FCN_sa', 'Path to the saved trained model.')
-tf.app.flags.DEFINE_string('atlas_dir',     '/cardiac/patchmatchSegmentation/3datlas2', 'Path to the atlas.')
-#tf.app.flags.DEFINE_string('atlas_dir',     '/refs', 'Path to the atlas.')
+tf.app.flags.DEFINE_string('atlas_dir',     '/refs', 'Path to the atlas.')
 tf.app.flags.DEFINE_string('param_dir',     '/par', 'Path to the registration parameters.')
 tf.app.flags.DEFINE_string('template_dir',  '/vtks/1', 'Path to the template.')
 tf.app.flags.DEFINE_string('template_PH',   '/vtks/2', 'Path to the template.')
@@ -47,7 +46,7 @@ if __name__ == '__main__':
 
         #print("\n\n ... Done deeplearningseg")
                  
-        multiatlasreg2D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, False, FLAGS.irtk) # parallel, irtk
+        #ultiatlasreg2D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, False, FLAGS.irtk) # parallel, irtk
 
         multiatlasreg3D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, False, FLAGS.irtk) # parallel, irtk
 
