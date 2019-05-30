@@ -11,7 +11,7 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
 
 * [Test/debug](Test/debug) The code results in testing in a small UK Biobank sample.
     * multiatlasreg3D in test (29/05/19)
-	    * Problem with the multiatlasreg3D function, I'm identifying where the code fails:
+	    * Problem with the multiatlasreg3D function, I'm identifying where the code fails (single atlas):
 	        * topSimilarAtlasShapeSelection function [pass]
 	        * formHighResolutionImg function [pass] 
 	            *  Fixed problem on path that caused an error in the resample, I then tested the whole pipline for ES and ED, with a single atlas (debug phase). now in testing with all atlas.
@@ -20,7 +20,8 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
 	        * convertImageSegment [pass]
 	        * outputVolumes [pass]
 	        * moveVolumes  [pass]
-
+      * multiatlasreg3D in test (30/05/19) (all atals) [fails]
+          * The problem could be related to the fact that during the MIRTK processing some files are saved in wrong folders and this produces null outputs. I proceed to create exceptions with consecutive termination if some file is not found.
 
 
 # Overview

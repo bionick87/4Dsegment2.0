@@ -7,21 +7,42 @@ from image_utils import *
 
 
 
+def isexists(path):
+  if os.path.isfile(DLSeg):
+      print("\n\n  ... File: "+ DLSeg +"exist!")
+  else:
+      print("\n\n  ... File: "+ DLSeg +"does not exist!")
+      sys.exit()
+
+
 def output3DRefinement(atlases, DLSeg, param_dir, tmps_dir, dofs_dir, subject_dir, savedInd, fr, mirtk):
    
     segstring = ''
     ind = 0
-    atlasUsedNo = len(atlases)
+    #atlasUsedNo = len(atlases)
     ###############
     # For debug   #
-    ################
-    
-
-    #atlasUsedNo = 1
+    ###############
+    atlasUsedNo = 1
 
     for i in range(atlasUsedNo):
          
         if mirtk:
+
+            if os.path.isfile(DLSeg):
+                print("\n\n  ... File: "+ DLSeg +" does not exist!")
+                sys.exit()
+
+            a = '{0}'.format(DLSeg, atlases[i], param_dir, dofs_dir, savedInd[i], i, fr)
+            b = '{1}'.format(DLSeg, atlases[i], param_dir, dofs_dir, savedInd[i], i, fr)
+            c = '{2}/ffd_label_1.cfg'.format(DLSeg, atlases[i], param_dir, dofs_dir, savedInd[i], i, fr)
+            d = '{3}/shapelandmarks_{4}.dof.gz'.format(DLSeg, atlases[i], param_dir, dofs_dir, savedInd[i], i, fr)
+
+            isexists(a)
+            isexists(b)
+            isexists(c)
+            isexists(d)
+            
             os.system('mirtk register '
                       '{0} '
                       '{1} '
@@ -30,12 +51,26 @@ def output3DRefinement(atlases, DLSeg, param_dir, tmps_dir, dofs_dir, subject_di
                       '-dofout {3}/shapeffd_{5}_{6}.dof.gz' 
                       .format(DLSeg, atlases[i], param_dir, dofs_dir, savedInd[i], i, fr))
             
+            e = '{3}/shapeffd_{5}_{6}.dof.gz'.format(DLSeg, atlases[i], param_dir, dofs_dir, savedInd[i], i, fr)
+            f = '{0}'.format(DLSeg, atlases[i], param_dir, dofs_dir, savedInd[i], i, fr)
+            h = '{2}/shapeffd_{4}_{5}.dof.gz'.format(atlases[i], tmps_dir, dofs_dir, subject_dir, i, fr)
+            i = '{3}/sizes/sa_SR_{5}.nii.gz'.format(atlases[i], tmps_dir, dofs_dir, subject_dir, i, fr) 
+
+
+            isexists(e)
+            isexists(f)
+            isexists(h)
+            isexists(i)
+
             os.system('mirtk transform-image '
                       '{0} '
                       '{1}/seg_sa_SR_{4}_{5}.nii.gz ' 
                       '-dofin {2}/shapeffd_{4}_{5}.dof.gz '
-                      '-target {3}/sa_SR_{5}.nii.gz -interp NN'  
+                      '-target {3}/sizes/sa_SR_{5}.nii.gz -interp NN'  
                       .format(atlases[i], tmps_dir, dofs_dir, subject_dir, i, fr)) 
+
+            g = '{1}/seg_sa_SR_{4}_{5}.nii.gz'.format(atlases[i], tmps_dir, dofs_dir, subject_dir, i, fr)
+            isexists(g)
 
         else:
             os.system('nreg '
@@ -126,8 +161,6 @@ def apply_PC(subject, data_dir, param_dir, atlases_list, landmarks_list, mirtk):
 ##############################
 # DEBUG Nicolo Savioli       #
 ##############################
-
-
 
 
 

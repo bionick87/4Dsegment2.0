@@ -2,6 +2,7 @@ import os
 import numpy as np
 import nibabel as nib
 from numpy.linalg import inv
+import sys
 
 def rescale_intensity(image, thres=(1.0, 99.0)):
     """ Rescale the image intensity to the range of [0, 1] """
@@ -159,15 +160,14 @@ def removeSegsAboveBase(data_dir, output_name):
 
 def formHighResolutionImg(subject_dir, fr): 
 
-    print("###############################################")
     input_file = '{0}/sizes/sa_{1}.nii.gz'.format(subject_dir, fr)
-    print(input_file)
-    print(os.path.isfile(input_file))
-    print("###############################################")
+    if os.path.isfile(input_file):
+        print("\n\n  ... File: "+ input_file +" does not exist!")
+        sys.exit()
   
     os.system('resample ' 
               '{0}/sizes/sa_{1}.nii.gz '
-              '{0}/sa_SR_{1}.nii.gz '
+              '{0}/sizes/sa_SR_{1}.nii.gz '
               '-size 1.25 1.25 2'
               .format(subject_dir, fr))
         
@@ -180,6 +180,12 @@ def formHighResolutionImg(subject_dir, fr):
 
     
 def convertImageSegment(data_dir, fr):
+
+    input_file = '{0}/seg_sa_SR_{1}.nii.gz'.format(data_dir, fr)
+    if os.path.isfile(input_file):
+        print("\n\n  ... File: "+ input_file +" does not exist!")
+        sys.exit()
+  
    
     os.system('convert '
               '{0}/seg_sa_SR_{1}.nii.gz '
@@ -416,7 +422,7 @@ def topSimilarAtlasShapeSelection(atlases, atlas_landmarks, subject_landmarks, t
     nmi = []
     
     topSimilarAtlases_list = []
-    atlasNo = len(atlases)
+    #atlasNo = len(atlases)
     
 
     ##############
@@ -424,7 +430,7 @@ def topSimilarAtlasShapeSelection(atlases, atlas_landmarks, subject_landmarks, t
     ##############
 
 
-    #atlasNo = 1
+    atlasNo = 1
     
     os.system('rm {0}/shapenmi*.txt'.format(tmps_dir))
     
