@@ -158,13 +158,20 @@ def removeSegsAboveBase(data_dir, output_name):
     nib.save(nim2, '{0}/{1}'.format(data_dir, output_name))
     
 
+
+def isexists(path):
+  if os.path.isfile(DLSeg):
+      print("\n\n  ... File: "+ DLSeg +"exist!")
+  else:
+      print("\n\n  ... File: "+ DLSeg +"does not exist!")
+      sys.exit()
+
+
 def formHighResolutionImg(subject_dir, fr): 
 
     input_file = '{0}/sizes/sa_{1}.nii.gz'.format(subject_dir, fr)
-    if os.path.isfile(input_file):
-        print("\n\n  ... File: "+ input_file +" does not exist!")
-        sys.exit()
-  
+    isexists(input_file)
+    
     os.system('resample ' 
               '{0}/sizes/sa_{1}.nii.gz '
               '{0}/sizes/sa_SR_{1}.nii.gz '
@@ -178,14 +185,9 @@ def formHighResolutionImg(subject_dir, fr):
 #              '-value 0'
 #              .format(subject_dir, fr))
 
-    
-def convertImageSegment(data_dir, fr):
 
-    input_file = '{0}/seg_sa_SR_{1}.nii.gz'.format(data_dir, fr)
-    if os.path.isfile(input_file):
-        print("\n\n  ... File: "+ input_file +" does not exist!")
-        sys.exit()
-  
+
+def convertImageSegment(data_dir, fr):
    
     os.system('convert '
               '{0}/seg_sa_SR_{1}.nii.gz '
