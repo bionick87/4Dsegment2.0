@@ -23,7 +23,7 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
             * multiatlasreg3D in test for all high resolution (HR) atals (30/05/19)  [fails]
                 * The problem could be related to the fact that during the MIRTK processing some files are saved in wrong folders and this produces null outputs -- I proceed to create exceptions with consecutive termination if some file is not found (done).
                 *  Tested with small atlas HR samples, wehere N is number of atlas where we coregister the low resolution from UKBB:
-                        *  With N = 1 atlas the multiatlasreg3D works fine;
+                        *  With N = 1 atlas the multiatlasreg3D works fine.
                         *  with N = 100, it works. 
                 * I then selected 5 cases with an optimal FCN segmentation - test if any bad segmentation (due to the FCN) could lead some errors on the coregistration pipline chain. (in testing)
 
