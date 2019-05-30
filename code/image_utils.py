@@ -440,7 +440,7 @@ def topSimilarAtlasShapeSelection(atlases, atlas_landmarks, subject_landmarks, t
     ##############
 
 
-    atlasNo = 5
+    atlasNo = 100
     
     os.system('rm {0}/shapenmi*.txt'.format(tmps_dir))
     
