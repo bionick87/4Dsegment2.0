@@ -23,7 +23,7 @@ def output3DRefinement(atlases, DLSeg, param_dir, tmps_dir, dofs_dir, subject_di
     ###############
     # For debug   #
     ###############
-    atlasUsedNo = 1
+    atlasUsedNo = 5
 
     for i in range(atlasUsedNo):
          

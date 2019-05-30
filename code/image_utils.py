@@ -107,7 +107,7 @@ def clearBaseManbrance(data_dir, output_name):
     flat = True
     if flat:
         seg = np.transpose(seg, axes=(2, 0, 1))
-        seg[lastAppearSlice-slicesUsed:lastAppearSlice-1,:,:] = seg[lastAppearSlice-slicesUsed:lastAppearSlice-1,:,:] + tmp
+        seg[lastAppearSlice-slicesUsed:lastAppearSlice-1,:,:] = seg[yelastAppearSlice-slicesUsed:lastAppearSlice-1,:,:] + tmp
         seg = np.transpose(seg, axes=(1, 2, 0))
     else:
         seg[:,:,lastAppearSlice-slicesUsed:] = seg[:,:,lastAppearSlice-slicesUsed:] + lv[:,:,lastAppearSlice-slicesUsed:]
@@ -161,9 +161,9 @@ def removeSegsAboveBase(data_dir, output_name):
 
 def isexists(DLSeg):
   if os.path.isfile(DLSeg):
-      print("\n\n  ... File: "+ DLSeg +"exist!")
+      print("\n\n  ... File: "+ DLSeg +" exist!")
   else:
-      print("\n\n  ... File: "+ DLSeg +"does not exist!")
+      print("\n\n  ... File: "+ DLSeg +" does not exist!")
       sys.exit()
 
 
@@ -188,7 +188,12 @@ def formHighResolutionImg(subject_dir, fr):
 
 
 def convertImageSegment(data_dir, fr):
-   
+    
+
+
+    a =  '{0}/seg_sa_SR_{1}.nii.gz'.format(data_dir, fr)
+    isexists(a)
+
     os.system('convert '
               '{0}/seg_sa_SR_{1}.nii.gz '
               '{0}/PHsegmentation_{1}.gipl'
@@ -198,6 +203,9 @@ def convertImageSegment(data_dir, fr):
               '{0}/sa_SR_{1}.nii.gz '
               '{0}/sa_{1}_enlarged_SR.nii.gz'
               .format(data_dir, fr))
+
+    b =  '{0}/seg_sa_SR_{1}.nii.gz'.format(data_dir, fr)
+    isexists(b)
     
     
 def outputVolumes(subject_dir, data_dir, subject, fr):
@@ -432,7 +440,7 @@ def topSimilarAtlasShapeSelection(atlases, atlas_landmarks, subject_landmarks, t
     ##############
 
 
-    atlasNo = 1
+    atlasNo = 5
     
     os.system('rm {0}/shapenmi*.txt'.format(tmps_dir))
     
