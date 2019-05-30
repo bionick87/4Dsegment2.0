@@ -12,17 +12,21 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
 * [Test/debug](Test/debug) The code results in testing in a small UK Biobank sample.
     * multiatlasreg3D in test (29/05/19)
 	    * Problem with the multiatlasreg3D function, I'm identifying where the code fails (single atlas):
-	        * topSimilarAtlasShapeSelection function [pass]
-	        * formHighResolutionImg function [pass] 
-	            *  Fixed problem on path that caused an error in the resample, I then tested the whole pipline for ES and ED, with a single atlas (debug phase). now in testing with all atlas.
-	        * output3DRefinement function [pass]
-	        * refineFusionResults (with mirtk) [pass]
-	        * convertImageSegment [pass]
-	        * outputVolumes [pass]
-	        * moveVolumes  [pass]
-      * multiatlasreg3D in test (30/05/19) (all atals) [fails]
-          * The problem could be related to the fact that during the MIRTK processing some files are saved in wrong folders and this produces null outputs. I proceed to create exceptions with consecutive termination if some file is not found (done).
-              *  With N = 1 atlas the multiatlasreg3D works fine with N = tota_atlas we have problems. I try to set N = 10 in atlas selection.
+  	        * topSimilarAtlasShapeSelection    [pass]
+  	        * formHighResolutionImg            [fail] 
+  	            *  Fixed problem on path that caused an error in the resample, I then tested the whole pipline for ES and ED, with a single atlas (debug phase). now in testing with all atlas.
+  	        * output3DRefinement               [pass]
+  	        * refineFusionResults (with mirtk) [pass]
+  	        * convertImageSegment              [pass]
+  	        * outputVolumes                    [pass]
+  	        * moveVolumes                      [pass]
+            * multiatlasreg3D in test for all high resolution (HR) atals (30/05/19)  [fails]
+                * The problem could be related to the fact that during the MIRTK processing some files are saved in wrong folders and this produces null outputs -- I proceed to create exceptions with consecutive termination if some file is not found (done).
+                *  Tested with small atlas HR samples, wehere N is number of atlas where we coregister the low resolution from UKBB:
+                        *  With N = 1 atlas the multiatlasreg3D works fine;
+                        *  with N = 100, it works. 
+                * I then selected 5 cases with an optimal FCN segmentation - test if any bad segmentation (due to the FCN) could lead some errors on the coregistration pipline chain. (in testing)
+
 
 
 # Overview

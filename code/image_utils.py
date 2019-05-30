@@ -427,20 +427,15 @@ def allAtlasShapeSelection(dataset_dir):
 
 def topSimilarAtlasShapeSelection(atlases, atlas_landmarks, subject_landmarks, tmps_dir, dofs_dir, DLSeg, param_dir, topSimilarAltasNo):            
     
-    landmarks = False
-    
-    nmi = []
-    
+    landmarks              = False
+    nmi                    = []
     topSimilarAtlases_list = []
-    #atlasNo = len(atlases)
+    atlasNo                = len(atlases)
     
-
     ##############
     # for debug  #
     ##############
-
-
-    atlasNo = 100
+    #atlasNo = 100
     
     os.system('rm {0}/shapenmi*.txt'.format(tmps_dir))
     
