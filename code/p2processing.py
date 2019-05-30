@@ -7,7 +7,7 @@ from image_utils import *
 
 
 
-def isexists(path):
+def isexists(DLSeg):
   if os.path.isfile(DLSeg):
       print("\n\n  ... File: "+ DLSeg +"exist!")
   else:

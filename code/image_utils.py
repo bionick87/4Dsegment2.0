@@ -159,7 +159,7 @@ def removeSegsAboveBase(data_dir, output_name):
     
 
 
-def isexists(path):
+def isexists(DLSeg):
   if os.path.isfile(DLSeg):
       print("\n\n  ... File: "+ DLSeg +"exist!")
   else:
@@ -171,7 +171,7 @@ def formHighResolutionImg(subject_dir, fr):
 
     input_file = '{0}/sizes/sa_{1}.nii.gz'.format(subject_dir, fr)
     isexists(input_file)
-    
+
     os.system('resample ' 
               '{0}/sizes/sa_{1}.nii.gz '
               '{0}/sizes/sa_SR_{1}.nii.gz '
