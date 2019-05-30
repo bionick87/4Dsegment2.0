@@ -22,7 +22,7 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
 	        * moveVolumes  [pass]
       * multiatlasreg3D in test (30/05/19) (all atals) [fails]
           * The problem could be related to the fact that during the MIRTK processing some files are saved in wrong folders and this produces null outputs. I proceed to create exceptions with consecutive termination if some file is not found (done).
-              *  With N = 1 atlas the pipeline works fine with N = tota_atlas we have problems. I try to set N = 10 in atlas selction.
+              *  With N = 1 atlas the multiatlasreg3D works fine with N = tota_atlas we have problems. I try to set N = 10 in atlas selection.
 
 
 # Overview
