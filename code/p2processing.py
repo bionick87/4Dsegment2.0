@@ -9,9 +9,9 @@ from image_utils import *
 
 def isexists(DLSeg):
   if os.path.isfile(DLSeg):
-      print("\n\n  ... File: "+ DLSeg +"exist!")
+      print("\n\n  ... File: "+ DLSeg +" exist!")
   else:
-      print("\n\n  ... File: "+ DLSeg +"does not exist!")
+      print("\n\n  ... File: "+ DLSeg +" does not exist!")
       sys.exit()
 
 
@@ -50,13 +50,13 @@ def output3DRefinement(atlases, DLSeg, param_dir, tmps_dir, dofs_dir, subject_di
             e = '{3}/shapeffd_{5}_{6}.dof.gz'.format(DLSeg, atlases[i], param_dir, dofs_dir, savedInd[i], i, fr)
             f = '{0}'.format(DLSeg, atlases[i], param_dir, dofs_dir, savedInd[i], i, fr)
             h = '{2}/shapeffd_{4}_{5}.dof.gz'.format(atlases[i], tmps_dir, dofs_dir, subject_dir, i, fr)
-            i = '{3}/sizes/sa_SR_{5}.nii.gz'.format(atlases[i], tmps_dir, dofs_dir, subject_dir, i, fr) 
+            mm = '{3}/sizes/sa_SR_{5}.nii.gz'.format(atlases[i], tmps_dir, dofs_dir, subject_dir, i, fr) 
 
 
             isexists(e)
             isexists(f)
             isexists(h)
-            isexists(i)
+            isexists(mm)
 
             os.system('mirtk transform-image '
                       '{0} '
