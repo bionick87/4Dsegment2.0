@@ -29,10 +29,6 @@ def output3DRefinement(atlases, DLSeg, param_dir, tmps_dir, dofs_dir, subject_di
          
         if mirtk:
 
-            if os.path.isfile(DLSeg):
-                print("\n\n  ... File: "+ DLSeg +" does not exist!")
-                sys.exit()
-
             a = '{0}'.format(DLSeg, atlases[i], param_dir, dofs_dir, savedInd[i], i, fr)
             b = '{1}'.format(DLSeg, atlases[i], param_dir, dofs_dir, savedInd[i], i, fr)
             c = '{2}/ffd_label_1.cfg'.format(DLSeg, atlases[i], param_dir, dofs_dir, savedInd[i], i, fr)
