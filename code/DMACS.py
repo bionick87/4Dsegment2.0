@@ -32,6 +32,7 @@ tf.app.flags.DEFINE_string('atlas_dir',         '/cardiac/patchmatchSegmentation
 tf.app.flags.DEFINE_string('param_dir',         '/par', 'Path to the registration parameters.')
 tf.app.flags.DEFINE_string('template_dir',      '/vtks/1', 'Path to the template.')
 tf.app.flags.DEFINE_string('template_PH',       '/vtks/2', 'Path to the template.')
+tf.app.flags.DEFINE_boolean('irtk', True, 'use irtk or not')
 tf.app.flags.DEFINE_boolean('atlas3d', True,   'use 3datlas2')
 
 

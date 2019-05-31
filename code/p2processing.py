@@ -88,7 +88,7 @@ def output3DRefinement(atlases, DLSeg, param_dir, tmps_dir, dofs_dir, subject_di
     os.system('combineLabels {0}/seg_sa_SR_{1}.nii.gz {2} {3}'.format(subject_dir, fr, ind, segstring))
     
     
-def apply_PC(subject, data_dir, param_dir, atlases_list, landmarks_list, mirtk, atlas3d):
+def apply_PC(subject, data_dir, param_dir, atlases_list, landmarks_list, mirtk):
        
     print('  registering {0}'.format(subject))    
     
