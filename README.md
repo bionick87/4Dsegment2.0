@@ -25,7 +25,18 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
                 *  Tested with small atlas HR samples, wehere N is number of atlas where we coregister the low resolution from UKBB:
                         *  With N = 1 atlas the multiatlasreg3D works fine.
                         *  with N = 100, it works. 
-                * I then selected 5 cases with an optimal FCN segmentation - test if any bad segmentation (due to the FCN) could lead some errors on the coregistration pipline chain. (in testing)
+                * I then selected 5 cases with an optimal FCN segmentation - test if any bad segmentation (due to the FCN) could lead some errors on the coregistration pipline chain. [In certain cases it fails and certain cases do not] 
+                        * conclusion: the code is correct now, the problem is to be searched in the atlas input.
+                * Assumptions: PH atlas has 4 labels - LV and RV wall, LV and RV blood pool. While 3datlas2 consists of 3 labels - LV wall, LV and RV blood pool as UKBB - could the wrong number of labels lead to an incorrect coregistration?
+                * I proceed to update the code so as to be able to change atlas consistently from PH to 3datlas2 (with 3 labels) (31/05/19)
+ 
+
+ 
+
+ 
+
+ 
+
 
 
 
