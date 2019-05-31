@@ -164,7 +164,7 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk, atlas3d):
                
     print('Select all the shape atlases for 3D multi-atlas registration')
     
-    atlases_list, landmarks_list = allAtlasShapeSelection(dir_1)
+    atlases_list, landmarks_list = allAtlasShapeSelection(dir_1,atlas3d)
 
     if parallel:
     

@@ -388,9 +388,10 @@ def refineFusionResults(data_dir, output_name, alfa):
               .format(data_dir, output_name))
     
     
-def allAtlasShapeSelection(dataset_dir):
+def allAtlasShapeSelection(dataset_dir,atlas3d):
    
     atlases_list, landmarks_list = {}, {}
+    atlas_3D_shape               = ""
     
     for fr in ['ED', 'ES']:
             
@@ -406,8 +407,11 @@ def allAtlasShapeSelection(dataset_dir):
                 
                 continue 
             
-            atlas_3D_shape = '{0}/PHsegmentation_{1}.nii.gz'.format(atlas_dir, fr)
-           
+            if atlas3d: 
+                atlas_3D_shape = '{0}/segmentation_{1}.nii.gz'.format(atlas_dir, fr)
+            else: 
+                atlas_3D_shape = '{0}/PHsegmentation_{1}.nii.gz'.format(atlas_dir, fr) 
+
             landmarks = '{0}/landmarks.vtk'.format(atlas_dir)
         
             if i < 400:

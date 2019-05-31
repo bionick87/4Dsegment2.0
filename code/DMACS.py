@@ -23,7 +23,7 @@ FLAGS = tf.app.flags.FLAGS
 
 
 
-tf.app.flags.DEFINE_integer('coreNo',   18,     'Number of CPUs.')
+tf.app.flags.DEFINE_integer('coreNo',     18,   'Number of CPUs.')
 tf.app.flags.DEFINE_string('test_dir',          '/cardiac/UKBB_40616/test_ukbb',
                                                 'Path to the test set directory, under which images are organised in '
                                                 'subdirectories for each subject.')
@@ -32,8 +32,8 @@ tf.app.flags.DEFINE_string('atlas_dir',         '/cardiac/patchmatchSegmentation
 tf.app.flags.DEFINE_string('param_dir',         '/par', 'Path to the registration parameters.')
 tf.app.flags.DEFINE_string('template_dir',      '/vtks/1', 'Path to the template.')
 tf.app.flags.DEFINE_string('template_PH',       '/vtks/2', 'Path to the template.')
-tf.app.flags.DEFINE_boolean('irtk', True, 'use irtk or not')
-tf.app.flags.DEFINE_boolean('atlas3d', True,   'use 3datlas2')
+tf.app.flags.DEFINE_boolean('irtk',       True, 'use irtk or not')
+tf.app.flags.DEFINE_boolean('atlas3d',    True, 'use 3datlas2')
 
 
 if __name__ == '__main__':
