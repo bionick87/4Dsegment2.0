@@ -10,7 +10,8 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
 #  Debug phase - Nicolo Savioli 
 
 * [Test/debug](Test/debug) The code results in testing in a small UK Biobank sample.
-    * multiatlasreg3D in test (29/05/19)
+    * deepseg (FCN) in test   (21/05/19)       [pass]  
+    * multiatlasreg3D in test (29/05/19)       [fail] 
 	    * Problem with the multiatlasreg3D function, I'm identifying where the code fails (single atlas):
   	        * topSimilarAtlasShapeSelection    [pass]
   	        * formHighResolutionImg            [fail] 
