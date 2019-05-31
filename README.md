@@ -14,7 +14,7 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
 	    * Problem with the multiatlasreg3D function, I'm identifying where the code fails (single atlas):
   	        * topSimilarAtlasShapeSelection    [pass]
   	        * formHighResolutionImg            [fail] 
-  	            *  Fixed problem on path that caused an error in the resample, I then tested the whole pipline for ES and ED, with a single atlas (debug phase). now in testing with all atlas.
+  	            *  Fixed problem on path that caused an error in the resample, I then tested the whole pipline for ES and ED, with a single atlas (debug phase). In testing with all atlas [pass].
   	        * output3DRefinement               [pass]
   	        * refineFusionResults (with mirtk) [pass]
   	        * convertImageSegment              [pass]
@@ -30,15 +30,6 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
                 * Assumptions: PH atlas has 4 labels - LV and RV wall, LV and RV blood pool. While 3datlas2 consists of 3 labels - LV wall, LV and RV blood pool as UKBB - could the wrong number of labels lead to an incorrect coregistration?
                 * I proceed to update the code so as to be able to change atlas consistently from PH to 3datlas2 (with 3 labels) (31/05/19)
  
-
- 
-
- 
-
- 
-
-
-
 
 # Overview
 The files in this repository are organized into 3 directories:

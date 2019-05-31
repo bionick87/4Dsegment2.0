@@ -23,16 +23,17 @@ FLAGS = tf.app.flags.FLAGS
 
 
 
-tf.app.flags.DEFINE_integer('coreNo', 18,   'Number of CPUs.')
-tf.app.flags.DEFINE_string('test_dir',      '/cardiac/UKBB_40616/test_ukbb',
-                                            'Path to the test set directory, under which images are organised in '
-                                            'subdirectories for each subject.')
-tf.app.flags.DEFINE_string('model_path',    '/model/FCN_sa', 'Path to the saved trained model.')
-tf.app.flags.DEFINE_string('atlas_dir',     '/cardiac/patchmatchSegmentation/3datlas2', 'Path to the atlas.')
-tf.app.flags.DEFINE_string('param_dir',     '/par', 'Path to the registration parameters.')
-tf.app.flags.DEFINE_string('template_dir',  '/vtks/1', 'Path to the template.')
-tf.app.flags.DEFINE_string('template_PH',   '/vtks/2', 'Path to the template.')
-tf.app.flags.DEFINE_boolean('irtk', True,   'use irtk or not')
+tf.app.flags.DEFINE_integer('coreNo',   18,     'Number of CPUs.')
+tf.app.flags.DEFINE_string('test_dir',          '/cardiac/UKBB_40616/test_ukbb',
+                                                'Path to the test set directory, under which images are organised in '
+                                                'subdirectories for each subject.')
+tf.app.flags.DEFINE_string('model_path',        '/model/FCN_sa', 'Path to the saved trained model.')
+tf.app.flags.DEFINE_string('atlas_dir',         '/cardiac/patchmatchSegmentation/3datlas2', 'Path to the atlas.')
+tf.app.flags.DEFINE_string('param_dir',         '/par', 'Path to the registration parameters.')
+tf.app.flags.DEFINE_string('template_dir',      '/vtks/1', 'Path to the template.')
+tf.app.flags.DEFINE_string('template_PH',       '/vtks/2', 'Path to the template.')
+tf.app.flags.DEFINE_boolean('atlas3d', True,   'use 3datlas2')
+
 
 if __name__ == '__main__':
     
@@ -48,7 +49,7 @@ if __name__ == '__main__':
                  
         #ultiatlasreg2D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, False, FLAGS.irtk) # parallel, irtk
 
-        multiatlasreg3D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, False, FLAGS.irtk) # parallel, irtk
+        multiatlasreg3D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, False, FLAGS.irtk, FLAGS.atlas3d) # parallel, irtk
 
         print("\n\n ... Done multiatlasreg3D")
 
