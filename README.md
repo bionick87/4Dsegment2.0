@@ -20,7 +20,7 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
   	        * convertImageSegment              [pass]
   	        * outputVolumes                    [pass]
   	        * moveVolumes                      [pass]
-            * multiatlasreg3D in test for all high resolution (HR) atals (30/05/19)  [fails] 
+            * multiatlasreg3D in test for all high resolution (HR) atals (30/05/19)  [fails] : PHsegmentation_ED.gipl and  PHsegmentation_ES.gipl empty.
                 * The problem could be related to the fact that during the MIRTK processing some files are saved in wrong folders and this produces null outputs -- I proceed to create exceptions with consecutive termination if some file is not found (done).
                 *  Tested with small atlas HR samples, wehere N is number of atlas where we coregister the low resolution from UKBB:
                         *  With N = 1 atlas the multiatlasreg3D works fine.
@@ -28,7 +28,8 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
                 * I then selected 5 cases with an optimal FCN segmentation - test if any bad segmentation (due to the FCN) could lead some errors on the coregistration pipline chain. [In certain cases it fails and certain cases do not] 
                         * conclusion: the code is correct now, the problem is to be searched in the atlas input.
                 * Assumptions: PH atlas has 4 labels - LV and RV wall, LV and RV blood pool. While 3datlas2 consists of 3 labels - LV wall, LV and RV blood pool as UKBB - could the wrong number of labels lead to an incorrect coregistration?
-                * I proceed to update the code so as to be able to change atlas consistently from PH to 3datlas2 (with 3 labels) (31/05/19)
+                * I proceed to update the code so as to be able to change atlas consistently from PH to 3datlas2 (with 3 labels) (31/05/19) (done)
+                * In testing with 3datlas2
  
 
 # Overview
