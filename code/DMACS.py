@@ -50,13 +50,13 @@ if __name__ == '__main__':
                  
         #ultiatlasreg2D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, False, FLAGS.irtk) # parallel, irtk
 
-        multiatlasreg3D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, False, FLAGS.irtk, FLAGS.atlas3d) # parallel, irtk
+        #multiatlasreg3D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, False, FLAGS.irtk, FLAGS.atlas3d) # parallel, irtk
 
         print("\n\n ... Done multiatlasreg3D")
 
-        #meshCoregstration(FLAGS.test_dir, FLAGS.param_dir, FLAGS.template_dir, FLAGS.coreNo, True, False) # parallel, irtk
+        meshCoregstration(FLAGS.test_dir, FLAGS.param_dir, FLAGS.template_dir, FLAGS.coreNo, True, False) # parallel, irtk
 
-        #print("\n\n ... Done meshCoregstration")
+        print("\n\n ... Done meshCoregstration")
 
         #motionTracking(FLAGS.test_dir, FLAGS.param_dir, FLAGS.template_PH, FLAGS.coreNo, True) # parallel
 
