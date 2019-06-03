@@ -32,7 +32,7 @@ tf.app.flags.DEFINE_string('atlas_dir',         '/cardiac/patchmatchSegmentation
 tf.app.flags.DEFINE_string('param_dir',         '/par', 'Path to the registration parameters.')
 tf.app.flags.DEFINE_string('template_dir',      '/vtks/1', 'Path to the template.')
 tf.app.flags.DEFINE_string('template_PH',       '/vtks/2', 'Path to the template.')
-tf.app.flags.DEFINE_boolean('irtk',       True, 'use irtk or not')
+tf.app.flags.DEFINE_boolean('irtk',       False, 'use irtk or not')
 tf.app.flags.DEFINE_boolean('atlas3d',    True, 'use 3datlas2')
 
 
@@ -50,13 +50,14 @@ if __name__ == '__main__':
                  
         #ultiatlasreg2D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, False, FLAGS.irtk) # parallel, irtk
 
-        #multiatlasreg3D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, False, FLAGS.irtk, FLAGS.atlas3d) # parallel, irtk
+        multiatlasreg3D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, False, FLAGS.irtk, FLAGS.atlas3d) # parallel, irtk
 
-        print("\n\n ... Done multiatlasreg3D")
+        
+        #print("\n\n ... Done multiatlasreg3D")
 
-        meshCoregstration(FLAGS.test_dir, FLAGS.param_dir, FLAGS.template_dir, FLAGS.coreNo, True, False) # parallel, irtk
+        #meshCoregstration(FLAGS.test_dir, FLAGS.param_dir, FLAGS.template_dir, FLAGS.coreNo, False, False) # parallel, irtk
 
-        print("\n\n ... Done meshCoregstration")
+        #print("\n\n ... Done meshCoregstration")
 
         #motionTracking(FLAGS.test_dir, FLAGS.param_dir, FLAGS.template_PH, FLAGS.coreNo, True) # parallel
 
