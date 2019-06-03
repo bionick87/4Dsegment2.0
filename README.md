@@ -32,7 +32,7 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
                 * I proceed to update the code so as to be able to change atlas consistently from PH to 3datlas2 (with 3 labels) (31/05/19) (done)
                 * In testing with 3datlas2 (done)
                         * Both segmentations are not empty (solved)
-      * In test with  
+      * meshCoregstration (in test)
 
  
 
