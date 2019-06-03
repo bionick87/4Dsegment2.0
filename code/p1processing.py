@@ -92,11 +92,11 @@ def apply_PC(subject, data_dir, param_dir, atlases_list, landmarks_list, mirtk):
         print('  {0} is not a valid directory, do nothing'.format(subject_dir))
         
        
-def multiatlasreg2D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk):
+def multiatlasreg2D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk, atlas3d):
                
     print('Select all the shape atlases for 2D multi-atlas registration')
     
-    atlases_list, landmarks_list = allAtlasShapeSelection(dir_1)
+    atlases_list, landmarks_list = allAtlasShapeSelection(dir_1,atlas3d)
 
     if parallel:
     
