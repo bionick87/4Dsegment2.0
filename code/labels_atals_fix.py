@@ -6,6 +6,7 @@ import os
 import numpy as np
 import ntpath
 import shutil
+##################
 
 def get_label_replacement(img):
     img[img == 4] = 3
@@ -41,9 +42,9 @@ def fixlabels(segs_dir):
   shutil.rmtree(os.path.join(segs_dir,"tmp"))
 
 def run(dir_data):
-  for subject in sorted(os.listdir(data_dir)):
+  for subject in sorted(os.listdir(dir_data)):
       pathdata = os.path.join(dir_data,subject)
-
+      print(pathdata)
            
 if __name__ == "__main__":
   dir_data = "/cardiac/patchmatchSegmentation/test_test"
