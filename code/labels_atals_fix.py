@@ -5,6 +5,7 @@ import os
 import numpy as np
 import ntpath
 import shutil
+import nibabel as nib
 ##################
 
 def get_label_replacement(img):
