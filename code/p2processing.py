@@ -266,9 +266,9 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk, atlas3d):
             
             subject_landmarks = '{0}/landmarks.vtk'.format(subject_dir)
 
-            fixlabels(segs_dir)
+            #fixlabels(segs_dir)
+
             
-            '''
             for fr in ['ED', 'ES']:
                 DLSeg      = '{0}/seg_sa_{1}.nii.gz'.format(segs_dir, fr)
 
@@ -292,4 +292,4 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk, atlas3d):
                 moveVolumes(subject_dir, sizes_dir, fr)
            
             print('  finish 3D nonrigid-registering one subject {}'.format(subject))
-            '''
+          
