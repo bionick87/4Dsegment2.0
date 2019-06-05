@@ -208,9 +208,6 @@ def fixlabels(segs_dir):
   make_dir (segs_dir)
   for fr in ['ED', 'ES']:
       DLSeg      = '{0}/seg_sa_{1}.nii.gz'.format(segs_dir, fr)
-      if not os.path.exists(DLSeg):
-        print(' segmentation {0} does not exist. Skip.'.format(DLSeg))
-        continue   
       nameDLSeg  = ntpath.basename (DLSeg)
       newDLSeg   = get_new_labels  (DLSeg)
       save_nii                     (newDLSeg,segs_dir,nameDLSeg)
@@ -270,12 +267,14 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk, atlas3d):
             subject_landmarks = '{0}/landmarks.vtk'.format(subject_dir)
 
             fixlabels(segs_dir)
-
+            
+            '''
             for fr in ['ED', 'ES']:
                 DLSeg      = '{0}/seg_sa_{1}.nii.gz'.format(segs_dir, fr)
 
                 topSimilarAtlases_list, savedInd = topSimilarAtlasShapeSelection(atlases_list[fr], landmarks_list[fr], 
                                                    subject_landmarks, tmps_dir, dofs_dir, DLSeg, param_dir, 3) 
+                
                 formHighResolutionImg(subject_dir, fr)
 
                 output3DRefinement(topSimilarAtlases_list, DLSeg, param_dir, tmps_dir, dofs_dir, subject_dir, savedInd, fr, mirtk)
@@ -293,3 +292,4 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk, atlas3d):
                 moveVolumes(subject_dir, sizes_dir, fr)
            
             print('  finish 3D nonrigid-registering one subject {}'.format(subject))
+            '''
