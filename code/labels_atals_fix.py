@@ -47,5 +47,5 @@ def run(dir_data):
       print(pathdata)
            
 if __name__ == "__main__":
-  dir_data = "/cardiac/patchmatchSegmentation/test_test"
+  dir_data = "./cardiac/patchmatchSegmentation/test_test"
   run(dir_data)
