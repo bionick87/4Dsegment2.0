@@ -32,7 +32,7 @@ def make_dir(file_path):
 def fixlabels(segs_dir):
   make_dir (segs_dir)
   for fr in ['ED', 'ES']:
-      DLSeg      = '{0}/segmentation_{1}.gipl'.format(atlas_dir, fr)
+      DLSeg      = '{0}/segmentation_{1}.gipl'.format(segs_dir, fr)
       nameDLSeg  = ntpath.basename (DLSeg)
       newDLSeg   = get_new_labels  (DLSeg)
       save_nii                     (newDLSeg,segs_dir,nameDLSeg)
