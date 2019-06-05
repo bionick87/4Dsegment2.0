@@ -151,13 +151,63 @@ def apply_PC(subject, data_dir, param_dir, atlases_list, landmarks_list, mirtk):
         print('  {0} is not a valid directory, do nothing'.format(subject_dir))
         
 
-
-
-
 ##############################
-# DEBUG Nicolo Savioli       #
+#      Nicolo Savioli       #
 ##############################
 
+def get_label_replacement(img):
+    img[img == 3] = 4
+    return img
+
+def get_new_labels(filename):
+    img_list    = []
+    load_file  = nib.load(filename)
+    open_file  = load_file.get_fdata()
+    open_np    = open_file.transpose(2,0,1)
+    for i in range(open_np.shape[0]):    
+        img_list.append(get_label_replacement(open_np[i]))
+    out_img = np.asarray(img_list).transpose(2,1,0).transpose(1,0,2)
+    return nib.Nifti1Image(out_img, load_file.affine, load_file.header)
+
+def save_nii(file,namefile):
+    file.to_filename(os.path.join('tmp',namefile))
+
+def make_dir(file_path):
+    if not os.path.exists(file_path):
+        os.makedirs(file_path)
+
+def run_label_replacement(save_file):
+  file_path = os.path.join(save_file,"tmp")
+  make_dir(file_path)
+
+
+####################
+## Nicolo Savioli ##
+####################
+
+def get_label_replacement(img):
+    img[img == 3] = 4
+    return img
+
+def get_new_labels(filename):
+    img_list    = []
+    load_file  = nib.load(filename)
+    open_file  = load_file.get_fdata()
+    open_np    = open_file.transpose(2,0,1)
+    for i in range(open_np.shape[0]):    
+        img_list.append(get_label_replacement(open_np[i]))
+    out_img = np.asarray(img_list).transpose(2,1,0).transpose(1,0,2)
+    return nib.Nifti1Image(out_img, load_file.affine, load_file.header)
+
+def save_nii(file,basepath,namefile):
+    file.to_filename(os.path.join(basepath,'tmp',namefile))
+
+def make_dir(file_path):
+    file_path = os.path.join(file_path,"tmp")
+    if not os.path.exists(file_path):
+        os.makedirs(file_path)
+
+#####################################
 
 
 def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk, atlas3d):
@@ -208,77 +258,39 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk, atlas3d):
             sizes_dir = '{0}/sizes'.format(subject_dir)
             
             subject_landmarks = '{0}/landmarks.vtk'.format(subject_dir)
+
+            make_dir (segs_dir)
             
             for fr in ['ED', 'ES']:
-            #for fr in [ 'ES']:        
-            
-                DLSeg = '{0}/seg_sa_{1}.nii.gz'.format(segs_dir, fr)
-                
+                DLSeg      = '{0}/seg_sa_{1}.nii.gz'.format(segs_dir, fr)
+
                 if not os.path.exists(DLSeg):
-                
                     print(' segmentation {0} does not exist. Skip.'.format(DLSeg))
-                
                     continue
                 
-                #######################################################
-                print("\n\n ... ENTER                           topSimilarAtlasShapeSelection \n\n\n   ") 
+                nameDLSeg  = ntpath.basename (DLSeg)
+                newDLSeg   = get_new_labels  (DLSeg)
+                save_nii                     (newDLSeg,segs_dir,nameDLSeg)
+                os.remove                    (DLSeg)
+                shutil.move                  (os.path.join(segs_dir,"tmp",nameDLSeg), segs_dir)
+            
                 topSimilarAtlases_list, savedInd = topSimilarAtlasShapeSelection(atlases_list[fr], landmarks_list[fr], 
                                                    subject_landmarks, tmps_dir, dofs_dir, DLSeg, param_dir, 3) 
-
-                print("\n\n ... topSimilarAtlases_list: \n\n\n    ")
-                print(topSimilarAtlases_list)
-                print("\n\n ... savedInd: \n\n\n    ")
-                print(savedInd)
-               
-                
-  
-                print("\n\n ...EXIT topSimilarAtlasShapeSelection DONE \n\n\n    ")
-                #######################################################
-
-                #######################################################
-                print("\n\n ... ENTER  formHighResolutionImg \n\n\n   ") 
                 formHighResolutionImg(subject_dir, fr)
-                print("\n\n ... EXIT formHighResolutionImg \n\n\n   ")
-                #######################################################
 
-               
-                
-                #######################################################
-                print("\n\n ... ENTER output3DRefinement \n\n\n   ")
                 output3DRefinement(topSimilarAtlases_list, DLSeg, param_dir, tmps_dir, dofs_dir, subject_dir, savedInd, fr, mirtk)
-                print("\n\n ... EXIT output3DRefinement \n\n\n")
-                #######################################################
-                
+
                 if mirtk:
-                    #######################################################
-                    print("\n\n ... ENTER refineFusionResults \n\n\n   ")
                     refineFusionResults(subject_dir, 'seg_sa_SR_{0}.nii.gz'.format(fr), 2) 
-                    print("\n\n ... EXIT refineFusionResults \n\n\n")
-                    #######################################################
+
                 else:
-                    #######################################################
-                    print("\n\n ... ENTER refineFusionResults \n\n\n   ")
                     refineFusionResults(subject_dir, 'seg_sa_SR_{0}.nii.gz'.format(fr), 2) 
-                    print("\n\n ... EXIT refineFusionResults")
-                    #######################################################
-                
-                 
-                #######################################################
-                print("\n\n ... ENTER convertImageSegment \n\n\n   ")
+       
                 convertImageSegment(subject_dir, fr)
-                print("\n\n ... EXIT convertImageSegment \n\n\n   ")
-                #######################################################
-
-                #######################################################
-                print("\n\n ... ENTER outputVolumes \n\n\n   ")
+                
                 outputVolumes(subject_dir, data_dir, subject, fr)
-                print("\n\n ... EXIT outputVolumes  \n\n\n")
-                #######################################################
 
-                #######################################################
-                print("\n\n ... ENTER moveVolumes \n\n\n   ")
                 moveVolumes(subject_dir, sizes_dir, fr)
-                print("\n\n ... EXIT moveVolumes")
-                #######################################################
-                           
+
+            shutil.rmtree(os.path.join(segs_dir,"tmp"))               
             print('  finish 3D nonrigid-registering one subject {}'.format(subject))
