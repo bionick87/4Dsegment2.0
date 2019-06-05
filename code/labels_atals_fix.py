@@ -42,7 +42,9 @@ def fixlabels(segs_dir):
 
 def run(dir_data):
   for subject in sorted(os.listdir(dir_data)):
+      print("...." + subject)
       fixlabels(os.path.join(dir_data,subject))
+       
 
 if __name__ == "__main__":
   dir_data = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/patchmatchSegmentation/test_test"
