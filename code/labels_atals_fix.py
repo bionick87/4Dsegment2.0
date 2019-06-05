@@ -1,11 +1,11 @@
 ####################
 ## Nicolo Savioli ##
 ####################
+import nibabel as nib
 import os
 import numpy as np
 import ntpath
 import shutil
-import nibabel as nib
 ##################
 
 def get_label_replacement(img):
@@ -13,7 +13,7 @@ def get_label_replacement(img):
     return img
 
 def get_new_labels(filename):
-    img_list    = []
+    img_list   = []
     load_file  = nib.load(filename)
     open_file  = load_file.get_fdata()
     open_np    = open_file.transpose(2,0,1)
@@ -46,7 +46,6 @@ def run(dir_data):
       print("...." + subject)
       fixlabels(os.path.join(dir_data,subject))
        
-
 if __name__ == "__main__":
   dir_data = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/patchmatchSegmentation/test_test"
   run(dir_data)
