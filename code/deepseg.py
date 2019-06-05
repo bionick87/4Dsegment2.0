@@ -2,7 +2,9 @@ import os, time, math
 import nibabel as nib, numpy as np
 import tensorflow as tf
 import glob
-from image_utils import *
+from   image_utils import *
+import ntpath
+import shutil
 
 def deeplearningseg(model_path, test_dir, atlas_dir):           
      
