@@ -204,6 +204,18 @@ def make_dir(file_path):
     if not os.path.exists(file_path):
         os.makedirs(file_path)
 
+def fixlabels():
+  for fr in ['ED', 'ES']:
+      DLSeg      = '{0}/seg_sa_{1}.nii.gz'.format(segs_dir, fr)
+      if not os.path.exists(DLSeg):
+        print(' segmentation {0} does not exist. Skip.'.format(DLSeg))
+        continue   
+      nameDLSeg  = ntpath.basename (DLSeg)
+      newDLSeg   = get_new_labels  (DLSeg)
+      save_nii                     (newDLSeg,segs_dir,nameDLSeg)
+      os.remove                    (DLSeg)
+      shutil.move                  (os.path.join(segs_dir,"tmp",nameDLSeg), segs_dir)
+  shutil.rmtree(os.path.join(segs_dir,"tmp"))
 #####################################
 
 
@@ -260,17 +272,7 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk, atlas3d):
             
             for fr in ['ED', 'ES']:
                 DLSeg      = '{0}/seg_sa_{1}.nii.gz'.format(segs_dir, fr)
-
-                if not os.path.exists(DLSeg):
-                    print(' segmentation {0} does not exist. Skip.'.format(DLSeg))
-                    continue
                 
-                nameDLSeg  = ntpath.basename (DLSeg)
-                newDLSeg   = get_new_labels  (DLSeg)
-                save_nii                     (newDLSeg,segs_dir,nameDLSeg)
-                os.remove                    (DLSeg)
-                shutil.move                  (os.path.join(segs_dir,"tmp",nameDLSeg), segs_dir)
-            
                 topSimilarAtlases_list, savedInd = topSimilarAtlasShapeSelection(atlases_list[fr], landmarks_list[fr], 
                                                    subject_landmarks, tmps_dir, dofs_dir, DLSeg, param_dir, 3) 
                 formHighResolutionImg(subject_dir, fr)
@@ -288,6 +290,5 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk, atlas3d):
                 outputVolumes(subject_dir, data_dir, subject, fr)
 
                 moveVolumes(subject_dir, sizes_dir, fr)
-
-            shutil.rmtree(os.path.join(segs_dir,"tmp"))               
+           
             print('  finish 3D nonrigid-registering one subject {}'.format(subject))
