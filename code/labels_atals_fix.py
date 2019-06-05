@@ -1,7 +1,6 @@
 ####################
 ## Nicolo Savioli ##
 ####################
-
 import os
 import numpy as np
 import ntpath
@@ -43,9 +42,8 @@ def fixlabels(segs_dir):
 
 def run(dir_data):
   for subject in sorted(os.listdir(dir_data)):
-      pathdata = os.path.join(dir_data,subject)
-      print(pathdata)
-           
+      fixlabels(os.path.join(dir_data,subject))
+
 if __name__ == "__main__":
   dir_data = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/patchmatchSegmentation/test_test"
   run(dir_data)
