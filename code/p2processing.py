@@ -204,7 +204,8 @@ def make_dir(file_path):
     if not os.path.exists(file_path):
         os.makedirs(file_path)
 
-def fixlabels():
+def fixlabels(segs_dir):
+  make_dir (segs_dir)
   for fr in ['ED', 'ES']:
       DLSeg      = '{0}/seg_sa_{1}.nii.gz'.format(segs_dir, fr)
       if not os.path.exists(DLSeg):
@@ -258,21 +259,21 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk, atlas3d):
                 
                 continue 
                    
-            tmps_dir = '{0}/tmps'.format(subject_dir)
+            tmps_dir  = '{0}/tmps'.format(subject_dir)
 
-            dofs_dir = '{0}/dofs'.format(subject_dir)
+            dofs_dir  = '{0}/dofs'.format(subject_dir)
     
-            segs_dir = '{0}/segs'.format(subject_dir)
+            segs_dir  = '{0}/segs'.format(subject_dir)
             
             sizes_dir = '{0}/sizes'.format(subject_dir)
             
             subject_landmarks = '{0}/landmarks.vtk'.format(subject_dir)
 
-            make_dir (segs_dir)
-            
+            fixlabels(segs_dir)
+
             for fr in ['ED', 'ES']:
                 DLSeg      = '{0}/seg_sa_{1}.nii.gz'.format(segs_dir, fr)
-                
+
                 topSimilarAtlases_list, savedInd = topSimilarAtlasShapeSelection(atlases_list[fr], landmarks_list[fr], 
                                                    subject_landmarks, tmps_dir, dofs_dir, DLSeg, param_dir, 3) 
                 formHighResolutionImg(subject_dir, fr)
