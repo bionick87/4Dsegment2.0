@@ -33,7 +33,9 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
                 * In testing with 3datlas2 (done) (3/06/19)
                         * Both segmentations are not empty (solved) but not good [fail].
                 * test with nreg instead of mritk [fail].
-            * The reason was due to an error on the labels, in fact the segmentation produced by the FCN on UKBB created an inconsistent label (3) respect to the atlas label (4) of RV. A conversion code was then created, that transform the corresponding RV label (3) into the atlas label (4).
+            * The problem, results in how they are enumerated those classes:  In the atlas, for the RV class cavity is 4 while in Wenjia model is indicated with 3. This does not appear to be compatible So, I converted the class 3 in 4 to maintain consistent atlas and ukbb segmentation. [fail]
+            * 3datlas has 3 labels (plus background) but ordered incorrectly. That is: 0,1,2,4 this is not good because we have a jump (ie between 2 and 4). Mritk wants a consecutive order (ie 0,1,2,3) so I have to change the order of the labels in the 3datlas. [in test]
+
 
 # Overview
 The files in this repository are organized into 3 directories:

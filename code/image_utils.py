@@ -417,7 +417,7 @@ def allAtlasShapeSelection(dataset_dir,atlas3d):
             if i < 400:
                 if os.path.exists(atlas_3D_shape) or os.path.exists(landmarks):
                     
-                    atlases_list[fr] += [atlas_3D_shape]
+                    atlases_list[fr]   += [atlas_3D_shape]
                 
                     landmarks_list[fr] += [landmarks]
             else:
