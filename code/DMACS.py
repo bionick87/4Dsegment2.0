@@ -50,7 +50,7 @@ if __name__ == '__main__':
                  
         #multiatlasreg2D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, False, FLAGS.irtk, FLAGS.atlas3d) # parallel, irtk
 
-        multiatlasreg3D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, True, FLAGS.irtk, FLAGS.atlas3d) # parallel, irtk
+        multiatlasreg3D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, False, FLAGS.irtk, FLAGS.atlas3d) # parallel, irtk
         
         #print("\n\n ... Done multiatlasreg3D")
 
