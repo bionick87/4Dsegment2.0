@@ -2,8 +2,13 @@
 ## Nicolo Savioli ##
 ####################
 
+import os
+import numpy as np
+import ntpath
+import shutil
+
 def get_label_replacement(img):
-    img[img == 3] = 4
+    img[img == 4] = 3
     return img
 
 def get_new_labels(filename):
@@ -27,7 +32,7 @@ def make_dir(file_path):
 def fixlabels(segs_dir):
   make_dir (segs_dir)
   for fr in ['ED', 'ES']:
-      DLSeg      = '{0}/seg_sa_{1}.nii.gz'.format(segs_dir, fr)
+      DLSeg      = '{0}/segmentation_{1}.gipl'.format(atlas_dir, fr)
       nameDLSeg  = ntpath.basename (DLSeg)
       newDLSeg   = get_new_labels  (DLSeg)
       save_nii                     (newDLSeg,segs_dir,nameDLSeg)
@@ -38,7 +43,8 @@ def fixlabels(segs_dir):
 def run(dir_data):
   for subject in sorted(os.listdir(data_dir)):
       pathdata = os.path.join(dir_data,subject)
+
            
 if __name__ == "__main__":
-  dir_data = ""
+  dir_data = "/cardiac/patchmatchSegmentation/test_test"
   run(dir_data)
