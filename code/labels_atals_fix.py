@@ -57,5 +57,5 @@ def run(dir_data):
 
 
 if __name__ == "__main__":
-  dir_data = "/cardiac/patchmatchSegmentation/test_test"
+  dir_data = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/patchmatchSegmentation/test_test"
   run(dir_data)
