@@ -39,13 +39,14 @@ def fixlabels(segs_dir):
       enlargedfile            = '{0}/lvsa_{1}_enlarged.nii.gz'.format(segs_dir, fr)
       nameDLSeg               = ntpath.basename (DLSeg)
       newDLSeg,image_header   = get_new_labels  (DLSeg)
-      savedata (newDLSeg,fixed_DLSeg,image_header)
+      savedata   (newDLSeg,fixed_DLSeg,image_header)
       fixedheader(fixed_DLSeg,enlargedfile)
 
 def run(dir_data):
   for subject in sorted(os.listdir(dir_data)):
-      print("\n ..." + subject)
-      fixlabels(os.path.join(dir_data,subject))
+      if os.path.isdir(os.path.join(dir_data,subject)):
+        print("\n ..." + subject)
+        fixlabels(os.path.join(dir_data,subject))
 
 
 if __name__ == "__main__":
