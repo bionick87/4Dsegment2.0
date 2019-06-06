@@ -273,7 +273,7 @@ def multiatlasreg3D(dir_0, dir_1, dir_2, coreNo, parallel, mirtk, atlas3d):
                                                    subject_landmarks, tmps_dir, dofs_dir, DLSeg, param_dir, 3) 
                 
                 formHighResolutionImg(subject_dir, fr)
-
+              
                 output3DRefinement(topSimilarAtlases_list, DLSeg, param_dir, tmps_dir, dofs_dir, subject_dir, savedInd, fr, mirtk)
 
                 if mirtk:

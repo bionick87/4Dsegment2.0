@@ -19,7 +19,7 @@ def get_new_labels(filename):
     open_np    = open_file.transpose(2,0,1)
     for i in range(open_np.shape[0]):    
         img_list.append(get_label_replacement(open_np[i]))
-    out_img = np.asarray(img_list).transpose(2,1,0).transpose(1,0,2)
+    out_img    = np.asarray(img_list).transpose(2,1,0).transpose(1,0,2)
     return out_img,image_header
     
 def savedata(file,namefile,image_header):
