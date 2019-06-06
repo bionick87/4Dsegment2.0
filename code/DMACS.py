@@ -29,7 +29,7 @@ tf.app.flags.DEFINE_string('test_dir',          '/cardiac/UKBB_40616/test_one_p'
                                                 'subdirectories for each subject.')
 tf.app.flags.DEFINE_string('model_path',        '/model/FCN_sa', 'Path to the saved trained model.')
 tf.app.flags.DEFINE_string('atlas_dir',         '/cardiac/patchmatchSegmentation/3datlas2', 'Path to the atlas.')
-tf.app.flags.DEFINE_string('param_dir',         '/par', 'Path to the registration parameters.')
+tf.app.flags.DEFINE_string('param_dir',         '/par_ukbb', 'Path to the registration parameters.')
 tf.app.flags.DEFINE_string('template_dir',      '/vtks/1', 'Path to the template.')
 tf.app.flags.DEFINE_string('template_PH',       '/vtks/2', 'Path to the template.')
 tf.app.flags.DEFINE_boolean('irtk',       True, 'use irtk or not')
