@@ -24,18 +24,18 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
             * multiatlasreg3D in test for all high resolution (HR) atals (30/05/19)  [fails] : PHsegmentation_ED.gipl and  PHsegmentation_ES.gipl empty.
                 * The problem could be related to the fact that during the MIRTK processing some files are saved in wrong folders and this produces null outputs -- I proceed to create exceptions with consecutive termination if some file is not found (done).
                 *  Tested with small atlas HR samples, wehere N is number of atlas where we coregister the low resolution from UKBB:
-                        *  With N = 1 atlas the multiatlasreg3D works fine.
-                        *  with N = 100, it works. 
+                *  With N = 1 atlas the multiatlasreg3D works fine.
+                *  with N = 100, it works. 
                 * I then selected 5 cases with an optimal FCN segmentation - test if any bad segmentation (due to the FCN) could lead some errors on the coregistration pipline chain. [In certain cases it fails and certain cases do not] 
-                        * conclusion: the code is correct now, the problem is to be searched in the atlas input.
+                * conclusion: the code is correct now, the problem is to be searched in the atlas input.
                 * Assumptions: PH atlas has 4 labels - LV and RV wall, LV and RV blood pool. While 3datlas2 consists of 3 labels - LV wall, LV and RV blood pool as UKBB - could the wrong number of labels lead to an incorrect coregistration?
                 * I proceed to update the code so as to be able to change atlas consistently from PH to 3datlas2 (with 3 labels) (31/05/19) (done)
                 * In testing with 3datlas2 (done) (3/06/19)
-                        * Both segmentations are not empty (solved) but not good [fail].
+                * Both segmentations are not empty (solved) but not good [fail].
                 * test with nreg instead of mritk [fail].
             * The problem, results in how they are enumerated those classes:  In the atlas, for the RV class cavity is 4 while in Wenjia model is indicated with 3. This does not appear to be compatible So, I converted the class 3 in 4 to maintain consistent atlas and ukbb segmentation. [fail]
             * 3datlas has 3 labels (plus background) but ordered incorrectly. That is: 0,1,2,4 this is not good because we have a jump (ie between 2 and 4). Mritk wants a consecutive order (ie 0,1,2,3) so I have to change the order of the labels in the 3datlas. 
-                      * i created ./code/labels_atlas_fix.py for fixing the atlas labels probelm (in tesing)
+                * i created ./code/labels_atlas_fix.py for fixing the atlas labels probelm (in tesing)
 
 
 # Overview
