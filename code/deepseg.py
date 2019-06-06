@@ -19,7 +19,6 @@ def deeplearningseg(model_path, test_dir, atlas_dir):
         # Process each subject subdirectory
         table_time = []
 
-
         if os.path.exists('{0}/subjnames.txt'.format(test_dir)):
             os.system('rm {0}/*.txt'.format(test_dir))
         os.system('touch {0}/subjnames.txt'.format(test_dir))
