@@ -56,8 +56,6 @@ def run(dir_data):
       fixlabels(os.path.join(dir_data,subject))
 
 
-
-       
 if __name__ == "__main__":
   dir_data = "/cardiac/patchmatchSegmentation/test_test"
   run(dir_data)
