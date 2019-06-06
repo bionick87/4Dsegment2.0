@@ -22,14 +22,8 @@ def get_new_labels(filename):
     out_img = np.asarray(img_list).transpose(2,1,0).transpose(1,0,2)
     return out_img,image_header
     
-def savedata(file,basepath,namefile,image_header):
-    save(file, os.path.join(basepath,'tmp',namefile), image_header)
-
-def make_dir(file_path):
-    file_path = os.path.join(file_path,"tmp")
-    if not os.path.exists(file_path):
-        os.makedirs(file_path)
-
+def savedata(file,namefile,image_header):
+    save(file, namefile, image_header)
 
 def fixedheader(segmentation,grayscale):
     os.system('headertool '
@@ -39,16 +33,14 @@ def fixedheader(segmentation,grayscale):
             .format(segmentation, grayscale))
 
 def fixlabels(segs_dir):
-  make_dir (segs_dir)
   for fr in ['ED', 'ES']:
       DLSeg                   = '{0}/segmentation_{1}.gipl'.format(segs_dir, fr)
       fixed_DLSeg             = '{0}/segmentation_{1}_fixedup.gipl'.format(segs_dir, fr)
       enlargedfile            = '{0}/lvsa_{1}_enlarged.nii.gz'.format(segs_dir, fr)
       nameDLSeg               = ntpath.basename (DLSeg)
       newDLSeg,image_header   = get_new_labels  (DLSeg)
-      savedata (newDLSeg,segs_dir,fixed_DLSeg,image_header)
+      savedata (newDLSeg,fixed_DLSeg,image_header)
       fixedheader(fixed_DLSeg,enlargedfile)
-      print("\n ... done")
 
 def run(dir_data):
   for subject in sorted(os.listdir(dir_data)):
@@ -58,4 +50,5 @@ def run(dir_data):
 
 if __name__ == "__main__":
   dir_data = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/patchmatchSegmentation/test_test"
+  #dir_data = "/homes/nsavioli/Desktop/data_test"
   run(dir_data)
