@@ -407,10 +407,13 @@ def allAtlasShapeSelection(dataset_dir,atlas3d):
                 
                 continue 
             
-            if atlas3d: 
-                atlas_3D_shape = '{0}/segmentation_{1}_fixedup.gipl'.format(atlas_dir, fr)
-            else: 
-                atlas_3D_shape = '{0}/PHsegmentation_{1}.nii.gz'.format(atlas_dir, fr) 
+            atlas_3D_shape = '{0}/segmentation_{1}_fixedup.gipl'.format(atlas_dir, fr)
+
+            
+            #if atlas3d: 
+            #    atlas_3D_shape = '{0}/segmentation_{1}_fixedup.gipl'.format(atlas_dir, fr)
+            #else: 
+            #    atlas_3D_shape = '{0}/PHsegmentation_{1}.nii.gz'.format(atlas_dir, fr) 
 
             landmarks = '{0}/landmarks.vtk'.format(atlas_dir)
         
