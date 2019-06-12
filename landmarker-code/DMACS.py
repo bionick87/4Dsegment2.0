@@ -11,7 +11,7 @@ from motionEstimation import *
 FLAGS = tf.app.flags.FLAGS
 
 tf.app.flags.DEFINE_integer('coreNo', 8, 'Number of CPUs.')
-tf.app.flags.DEFINE_string('test_dir', '/cardiac/DL_segmentation/HCM_RBH_to_coreg1/1017761',
+tf.app.flags.DEFINE_string('test_dir', '/cardiac/DL_segmentation/HCM_RBH_to_coreg1',
                            'Path to the test set directory, under which images are organised in '
                            'subdirectories for each subject.')
 tf.app.flags.DEFINE_string('model_path',  '/model/FCN_sa', 'Path to the saved trained model.')
@@ -34,7 +34,7 @@ if __name__ == '__main__':
           
         meshCoregstration(FLAGS.test_dir, FLAGS.param_dir, FLAGS.template_dir, FLAGS.coreNo, True, False) # parallel, irtk
         
-       # motionTracking(FLAGS.test_dir, FLAGS.param_dir, FLAGS.template_PH, FLAGS.coreNo, True) # parallel
+        #motionTracking(FLAGS.test_dir, FLAGS.param_dir, FLAGS.template_PH, FLAGS.coreNo, True) # parallel
         
         process_time = time.time() - start_time 
         print('Including image I/O, CUDA resource allocation, '
