@@ -72,7 +72,7 @@ def apply_PC(subject, data_dir, param_dir, atlases_list, landmarks_list, mirtk):
                                   
         for fr in ['ED', 'ES']:
                 
-            DLSeg = '{0}/seg_lvsa_{1}.nii.gz'.format(segs_dir, fr)
+            DLSeg = '{0}/LVSA_seg_{1}.nii.gz'.format(subject_dir, fr)
             
             if not os.path.exists(DLSeg):
                 
