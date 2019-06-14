@@ -26,7 +26,7 @@ if __name__ == '__main__':
         table_time = []
         start_time = time.time()
 
-        deeplearningseg(FLAGS.model_path, FLAGS.test_dir, FLAGS.atlas_dir)         
+        #deeplearningseg(FLAGS.model_path, FLAGS.test_dir, FLAGS.atlas_dir)         
                  
         #multiatlasreg2D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, True, True) # parallel, irtk
         
