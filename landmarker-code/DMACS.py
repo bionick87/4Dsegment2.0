@@ -17,8 +17,8 @@ tf.app.flags.DEFINE_string('test_dir', '/cardiac/DL_segmentation/HCM_RBH_to_core
 tf.app.flags.DEFINE_string('model_path',  '/model/FCN_sa', 'Path to the saved trained model.')
 tf.app.flags.DEFINE_string('atlas_dir',  '/cardiac/patchmatchSegmentation/3datlas2', 'Path to the atlas.')
 tf.app.flags.DEFINE_string('param_dir', '/cardiac/patchmatchSegmentation/parameters', 'Path to the registration parameters.')
-tf.app.flags.DEFINE_string('template_dir', '/cardiac/PHpatchmatchSegmentation/3datlas2', 'Path to the template.')
-tf.app.flags.DEFINE_string('template_PH', '/cardiac/PHpatchmatchSegmentation/PHatlas', 'Path to the template.')
+tf.app.flags.DEFINE_string('template_dir', '/cardiac/patchmatchSegmentation/3datlas2', 'Path to the template.')
+tf.app.flags.DEFINE_string('template_PH', '/cardiac/patchmatchSegmentation/PHatlas', 'Path to the template.')
 
 if __name__ == '__main__':
     
@@ -26,11 +26,11 @@ if __name__ == '__main__':
         table_time = []
         start_time = time.time()
 
-        #deeplearningseg(FLAGS.model_path, FLAGS.test_dir, FLAGS.atlas_dir)         
+        deeplearningseg(FLAGS.model_path, FLAGS.test_dir, FLAGS.atlas_dir)         
                  
         #multiatlasreg2D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, True, True) # parallel, irtk
         
-        #multiatlasreg3D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, True, True) # parallel, irtk
+        multiatlasreg3D(FLAGS.test_dir, FLAGS.atlas_dir, FLAGS.param_dir, FLAGS.coreNo, True, True) # parallel, irtk
           
         meshCoregstration(FLAGS.test_dir, FLAGS.param_dir, FLAGS.template_dir, FLAGS.coreNo, True, False) # parallel, irtk
         
