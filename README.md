@@ -37,7 +37,7 @@ The code in this repository implements 4D*segment*, a pipeline for carrying out 
             * 3datlas has 3 labels (plus background) but ordered incorrectly. That is: 0,1,2,4 this is not good because we have a jump (ie between 2 and 4). Mritk wants a consecutive order (ie 0,1,2,3) so I have to change the order of the labels in the 3datlas. 
                 * I created ./code/labels_atlas_fix.py for fixing the atlas labels probelm (done)
                 * I changed the registration parameters (/par folder, the new is par_ukbb) as in PH we have 5 labels while UKBB 4      labels (in test)
-* [Test/debug - finished ](Test/debug) The code results in testing in a small UK Biobank sample.
+* [Test/debug - finished ](Test/debug)
 
 ![Alt text](data/ukbb.jpg?raw=true "UKBB final results")
 
