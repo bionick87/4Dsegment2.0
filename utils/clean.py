@@ -10,15 +10,15 @@ def mkdir_dir(file_path):
     if not os.path.exists(file_path):
         os.makedirs(file_path)
 
-def getExE(path,patient,targetfile):
-    exe = filename = ""
-    for file in os.listdir(os.path.join(path,patient)):
-        if ("SA" in file or "sa" in file) and len(file.split(".")[0]) == 2:
-            filename = file.split(".")[0]
-            exe      = file.split(".")[1]
-    return filename,exe
-                
 
+#def getExE(path,patient,targetfile):
+#    exe = filename = ""
+#    for file in os.listdir(os.path.join(path,patient)):
+#        if ("SA" in file or "sa" in file) and len(file.split(".")[0]) == 2:
+#            filename = file.split(".")[0]
+#            exe      = file.split(".")[1]
+#    return filename,exe
+                
 def deletefolders(path_main,patient):
     if os.path.isdir(os.path.join(path_main,patient)):
         for folder in os.listdir(os.path.join(path_main,patient)):
@@ -37,14 +37,15 @@ def movetargetfile(pathdir,target,logpathsave):
         if os.path.isdir(os.path.join(pathdir,patient)):
             if os.path.isfile(os.path.join(pathdir,patient,target + ".nii.gz")):
                 print("\n ..." +  patient)
-                targetfile = ""
-                filename,exe     = getExE(pathdir,patient,target)
-                if exe == "nii":
-                    targetfile   = filename + "." + exe + "." + "gz"
-                else:
-                    targetfile   = filename + "." + exe 
+                targetfile  = ""
+                targetfile  = filename + "." + exe + "." + "gz"
+                #filename,exe     = getExE(pathdir,patient,target)
+                #if exe == "nii":
+                #    targetfile   = filename + "." + exe + "." + "gz"
+                #else:
+                #    targetfile   = filename + "." + exe 
                 # create a tmp folder
-                tmp_path   = os.path.join(pathdir,patient,"TMP") 
+                tmp_path    = os.path.join(pathdir,patient,"TMP") 
                 mkdir_dir(tmp_path)
                 # move in tmp folder 
                 shutil.move(os.path.join(pathdir,patient,targetfile), tmp_path)
