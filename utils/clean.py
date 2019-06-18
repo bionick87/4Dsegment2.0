@@ -35,10 +35,9 @@ def movetargetfile(pathdir,target,logpathsave):
     err_dir = []
     for patient in os.listdir(pathdir): 
         if os.path.isdir(os.path.join(pathdir,patient)):
-            if os.path.isfile(os.path.join(pathdir,patient,target + ".nii.gz")):
+            targetfile       = target + ".nii.gz"
+            if os.path.isfile(os.path.join(pathdir,patient,targetfile)):
                 print("\n ..." +  patient)
-                targetfile  = ""
-                targetfile  = filename + "." + exe + "." + "gz"
                 #filename,exe     = getExE(pathdir,patient,target)
                 #if exe == "nii":
                 #    targetfile   = filename + "." + exe + "." + "gz"
