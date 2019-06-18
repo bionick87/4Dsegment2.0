@@ -63,8 +63,8 @@ def movetargetfile(pathdir,target,logpathsave):
                 f.write("%s\n" % item)
 
 
-def main(pathdir,targetfile):
-    movetargetfile(pathdir,targetfile)
+def main(pathdir,targetfile,logpathsave):
+    movetargetfile(pathdir,targetfile,logpathsave)
     
 if __name__ == "__main__":
     ####################################################################################
@@ -75,7 +75,7 @@ if __name__ == "__main__":
     # name target file                                                                 # 
     targetfile = "sa"                                                                  #
     ####################################################################################
-    main(pathdir,targetfile)
+    main(pathdir,targetfile,logpathsave)
 
 
 
