@@ -38,7 +38,7 @@ def movetargetfile(pathdir,target):
             targetfile = ""
             filename,exe     = getExE(pathdir,patient,target)
             if exe == "nii":
-                targetfile   = filename + "." + exe 
+                targetfile   = filename + "." + exe + "." + "gz"
             else:
                 targetfile   = filename + "." + exe 
             # create a tmp folder
