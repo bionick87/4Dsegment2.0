@@ -15,82 +15,8 @@ def meshGeneration(subject_dir, template_dir, param_dir, tmps_dir, vtks_dir, dof
         
         ###########################################################################    
         # extract meshes of lvendo, lvepi, lvmyo, rv and rveip at ED and ES, respectively
-        os.system('binarize '
-                  '{0}/PHsegmentation_{2}.gipl '
-                  '{1}/vtk_RV_{2}.nii.gz '
-                  '4 4 255 0'
-                  .format(subject_dir, tmps_dir, fr))
-           
-        os.system('mcubes '
-                  '{0}/vtk_RV_{2}.nii.gz '
-                  '{1}/RV_{2}.vtk '
-                  '120 -blur 2'
-                  .format(tmps_dir, vtks_dir, fr))
-        
-        os.system('binarize '
-                  '{0}/PHsegmentation_{2}.gipl '
-                  '{1}/vtk_RVepi_{2}.nii.gz '
-                  '3 4 255 0'
-                  .format(subject_dir, tmps_dir, fr))
-        
-        os.system('mcubes '
-                  '{0}/vtk_RVepi_{2}.nii.gz '
-                  '{1}/RVepi_{2}.vtk '
-                  '120 -blur 2'
-                  .format(tmps_dir, vtks_dir, fr))
-        
-        os.system('padding '
-                  '{0}/PHsegmentation_{2}.gipl '
-                  '{0}/PHsegmentation_{2}.gipl '
-                  '{1}/vtk_LV_{2}.nii.gz '
-                  '4 0'
-                  .format(subject_dir, tmps_dir, fr))
-        
-        os.system('padding '
-                  '{1}/vtk_LV_{2}.nii.gz '
-                  '{0}/PHsegmentation_{2}.gipl '
-                  '{1}/vtk_LV_{2}.nii.gz '
-                  '3 0'
-                  .format(subject_dir, tmps_dir, fr))
-        
-        os.system('binarize '
-                  '{0}/PHsegmentation_{2}.gipl '
-                  '{1}/vtk_LVendo_{2}.nii.gz '
-                  '1 1 255 0'
-                  .format(subject_dir, tmps_dir, fr))
-        
-        os.system('mcubes '
-                  '{0}/vtk_LVendo_{2}.nii.gz '
-                  '{1}/LVendo_{2}.vtk '
-                  '120 -blur 2'
-                  .format(tmps_dir, vtks_dir, fr))
-        
-        os.system('binarize '
-                  '{0}/PHsegmentation_{2}.gipl '
-                  '{1}/vtk_LVepi_{2}.nii.gz '
-                  '1 2 255 0'
-                  .format(subject_dir, tmps_dir, fr))
-        
-        os.system('mcubes '
-                  '{0}/vtk_LVepi_{2}.nii.gz '
-                  '{1}/LVepi_{2}.vtk '
-                  '120 -blur 2'
-                  .format(tmps_dir, vtks_dir, fr))
-        
-        os.system('binarize '
-                  '{0}/PHsegmentation_{2}.gipl '
-                  '{1}/vtk_LVmyo_{2}.nii.gz '
-                  '2 2 255 0'
-                  .format(subject_dir, tmps_dir, fr))
-        
-        os.system('mcubes '
-                  '{0}/vtk_LVmyo_{2}.nii.gz '
-                  '{1}/LVmyo_{2}.vtk '
-                  '120 -blur 2'
-                  .format(tmps_dir, vtks_dir, fr))
-        
 #        os.system('binarize '
-#                  '{0}/seg_lvsa_SR_{2}.nii.gz '
+#                  '{0}/PHsegmentation_{2}.gipl '
 #                  '{1}/vtk_RV_{2}.nii.gz '
 #                  '4 4 255 0'
 #                  .format(subject_dir, tmps_dir, fr))
@@ -102,7 +28,7 @@ def meshGeneration(subject_dir, template_dir, param_dir, tmps_dir, vtks_dir, dof
 #                  .format(tmps_dir, vtks_dir, fr))
 #        
 #        os.system('binarize '
-#                  '{0}/seg_lvsa_SR_{2}.nii.gz '
+#                  '{0}/PHsegmentation_{2}.gipl '
 #                  '{1}/vtk_RVepi_{2}.nii.gz '
 #                  '3 4 255 0'
 #                  .format(subject_dir, tmps_dir, fr))
@@ -114,21 +40,21 @@ def meshGeneration(subject_dir, template_dir, param_dir, tmps_dir, vtks_dir, dof
 #                  .format(tmps_dir, vtks_dir, fr))
 #        
 #        os.system('padding '
-#                  '{0}/seg_lvsa_SR_{2}.nii.gz '
-#                  '{0}/seg_lvsa_SR_{2}.nii.gz '
+#                  '{0}/PHsegmentation_{2}.gipl '
+#                  '{0}/PHsegmentation_{2}.gipl '
 #                  '{1}/vtk_LV_{2}.nii.gz '
 #                  '4 0'
 #                  .format(subject_dir, tmps_dir, fr))
 #        
 #        os.system('padding '
 #                  '{1}/vtk_LV_{2}.nii.gz '
-#                  '{0}/seg_lvsa_SR_{2}.nii.gz '
+#                  '{0}/PHsegmentation_{2}.gipl '
 #                  '{1}/vtk_LV_{2}.nii.gz '
 #                  '3 0'
 #                  .format(subject_dir, tmps_dir, fr))
 #        
 #        os.system('binarize '
-#                  '{0}/seg_lvsa_SR_{2}.nii.gz '
+#                  '{0}/PHsegmentation_{2}.gipl '
 #                  '{1}/vtk_LVendo_{2}.nii.gz '
 #                  '1 1 255 0'
 #                  .format(subject_dir, tmps_dir, fr))
@@ -140,7 +66,7 @@ def meshGeneration(subject_dir, template_dir, param_dir, tmps_dir, vtks_dir, dof
 #                  .format(tmps_dir, vtks_dir, fr))
 #        
 #        os.system('binarize '
-#                  '{0}/seg_lvsa_SR_{2}.nii.gz '
+#                  '{0}/PHsegmentation_{2}.gipl '
 #                  '{1}/vtk_LVepi_{2}.nii.gz '
 #                  '1 2 255 0'
 #                  .format(subject_dir, tmps_dir, fr))
@@ -152,7 +78,7 @@ def meshGeneration(subject_dir, template_dir, param_dir, tmps_dir, vtks_dir, dof
 #                  .format(tmps_dir, vtks_dir, fr))
 #        
 #        os.system('binarize '
-#                  '{0}/seg_lvsa_SR_{2}.nii.gz '
+#                  '{0}/PHsegmentation_{2}.gipl '
 #                  '{1}/vtk_LVmyo_{2}.nii.gz '
 #                  '2 2 255 0'
 #                  .format(subject_dir, tmps_dir, fr))
@@ -162,41 +88,105 @@ def meshGeneration(subject_dir, template_dir, param_dir, tmps_dir, vtks_dir, dof
 #                  '{1}/LVmyo_{2}.vtk '
 #                  '120 -blur 2'
 #                  .format(tmps_dir, vtks_dir, fr))
+        
+        os.system('binarize '
+                  '{0}/seg_lvsa_SR_{2}.nii.gz '
+                  '{1}/vtk_RV_{2}.nii.gz '
+                  '4 4 255 0'
+                  .format(subject_dir, tmps_dir, fr))
+           
+        os.system('mcubes '
+                  '{0}/vtk_RV_{2}.nii.gz '
+                  '{1}/RV_{2}.vtk '
+                  '120 -blur 2'
+                  .format(tmps_dir, vtks_dir, fr))
+        
+        os.system('binarize '
+                  '{0}/seg_lvsa_SR_{2}.gipl '
+                  '{1}/vtk_RVepi_{2}.nii.gz '
+                  '3 4 255 0'
+                  .format(subject_dir, tmps_dir, fr))
+        
+        os.system('mcubes '
+                  '{0}/vtk_RVepi_{2}.nii.gz '
+                  '{1}/RVepi_{2}.vtk '
+                  '120 -blur 2'
+                  .format(tmps_dir, vtks_dir, fr))
+        
+        os.system('padding '
+                  '{0}/seg_lvsa_SR_{2}.nii.gz '
+                  '{0}/seg_lvsa_SR_{2}.nii.gz '
+                  '{1}/vtk_LV_{2}.nii.gz '
+                  '4 0'
+                  .format(subject_dir, tmps_dir, fr))
+        
+        os.system('padding '
+                  '{1}/vtk_LV_{2}.nii.gz '
+                  '{0}/LVSA_seg_{2}.nii.gz '
+                  '{1}/vtk_LV_{2}.nii.gz '
+                  '3 0'
+                  .format(subject_dir, tmps_dir, fr))
+        
+        os.system('binarize '
+                  '{0}/seg_lvsa_SR_{2}.nii.gz '
+                  '{1}/vtk_LVendo_{2}.nii.gz '
+                  '1 1 255 0'
+                  .format(subject_dir, tmps_dir, fr))
+        
+        os.system('mcubes '
+                  '{0}/vtk_LVendo_{2}.nii.gz '
+                  '{1}/LVendo_{2}.vtk '
+                  '120 -blur 2'
+                  .format(tmps_dir, vtks_dir, fr))
+        
+        os.system('binarize '
+                  '{0}/seg_lvsa_SR_{2}.nii.gz '
+                  '{1}/vtk_LVepi_{2}.nii.gz '
+                  '1 2 255 0'
+                  .format(subject_dir, tmps_dir, fr))
+        
+        os.system('mcubes '
+                  '{0}/vtk_LVepi_{2}.nii.gz '
+                  '{1}/LVepi_{2}.vtk '
+                  '120 -blur 2'
+                  .format(tmps_dir, vtks_dir, fr))
+        
+        os.system('binarize '
+                  '{0}/seg_lvsa_SR_{2}.nii.gz '
+                  '{1}/vtk_LVmyo_{2}.nii.gz '
+                  '2 2 255 0'
+                  .format(subject_dir, tmps_dir, fr))
+        
+        os.system('mcubes '
+                  '{0}/vtk_LVmyo_{2}.nii.gz '
+                  '{1}/LVmyo_{2}.vtk '
+                  '120 -blur 2'
+                  .format(tmps_dir, vtks_dir, fr))
     
     ###############################################################################
     #use landmark to initialise the registration
-#    os.system('prreg '
-#              '{0}/landmarks.vtk '
-#              '{1}/landmarks.vtk '
-#              '-dofout {2}/landmarks.dof.gz'
-#              .format(subject_dir, template_dir, dofs_dir))
+    os.system('prreg '
+              '{0}/landmarks2.vtk '
+              '{1}/landmarks2.vtk '
+              '-dofout {2}/landmarks.dof.gz'
+              .format(subject_dir, template_dir, dofs_dir))
     
     ###############################################################################
     for fr in ['ED', 'ES']:
     
-#        os.system('msrreg 3 '
-#                  '{0}/RV_{4}.vtk '
-#                  '{0}/LVendo_{4}.vtk '
-#                  '{0}/LVepi_{4}.vtk '
-#                  '{1}/RV_{4}.vtk '
-#                  '{1}/LVendo_{4}.vtk '
-#                  '{1}/LVepi_{4}.vtk '
-#                  '-dofin {2}/landmarks.dof.gz '
-#                  '-dofout {3}/{4}.dof.gz '
-#                  '-symmetric'
-#                  .format(vtks_dir, template_dir, dofs_dir, tmps_dir, fr))
-        
         os.system('msrreg 3 '
-                  '{0}/RV_{3}.vtk '
-                  '{0}/LVendo_{3}.vtk '
-                  '{0}/LVepi_{3}.vtk '
-                  '{1}/RV_{3}.vtk '
-                  '{1}/LVendo_{3}.vtk '
-                  '{1}/LVepi_{3}.vtk '
-                  '-dofout {2}/{3}.dof.gz '
+                  '{0}/RV_{4}.vtk '
+                  '{0}/LVendo_{4}.vtk '
+                  '{0}/LVepi_{4}.vtk '
+                  '{1}/RV_{4}.vtk '
+                  '{1}/LVendo_{4}.vtk '
+                  '{1}/LVepi_{4}.vtk '
+                  '-dofin {2}/landmarks.dof.gz '
+                  '-dofout {3}/{4}.dof.gz '
                   '-symmetric'
-                  .format(vtks_dir, template_dir, tmps_dir, fr))
+                  .format(vtks_dir, template_dir, dofs_dir, tmps_dir, fr))
         
+       
         os.system('msrreg 2 '
                   '{0}/LVendo_{3}.vtk '
                   '{0}/LVepi_{3}.vtk '
@@ -423,8 +413,7 @@ def meshGeneration(subject_dir, template_dir, param_dir, tmps_dir, vtks_dir, dof
             os.system('vtk2txt {0}/W_LVmyo_{1}.vtk {2}/lv_myo{3}_wallthickness.txt'.format(vtks_dir, fr, subject_dir, fr_))
             os.system('vtk2txt {0}/C_LVmyo_{1}.vtk {2}/lv_myo{3}_curvature.txt'.format(vtks_dir, fr, subject_dir, fr_))
             os.system('vtk2txt {0}/S_LVmyo_{1}.vtk {2}/lv_myo{3}_signeddistances.txt'.format(vtks_dir, fr, subject_dir, fr_))
-  
-      
+        
 def apply_PC(subject, data_dir, param_dir, template_dir, mirtk):
     
     print('  co-registering {0}'.format(subject))    

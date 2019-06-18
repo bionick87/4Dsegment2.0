@@ -2,9 +2,7 @@ import os, time, math
 import nibabel as nib, numpy as np
 import tensorflow as tf
 import glob
-from   image_utils import *
-import ntpath
-import shutil
+from image_utils import *
 
 def deeplearningseg(model_path, test_dir, atlas_dir):           
      
@@ -19,30 +17,24 @@ def deeplearningseg(model_path, test_dir, atlas_dir):
         # Process each subject subdirectory
         table_time = []
 
-        if os.path.exists('{0}/subjnames.txt'.format(test_dir)):
-            os.system('rm {0}/*.txt'.format(test_dir))
-        os.system('touch {0}/subjnames.txt'.format(test_dir))
         for data in sorted(os.listdir(test_dir)):
-              
+            
+            print(data)
+            
             data_dir = os.path.join(test_dir, data)
             
-            if not os.path.isdir(data_dir):
-                print('  {0} is not a valid directory, Skip'.format(data_dir))
-                continue
+             
             
-            file = open('{0}/subjnames.txt'.format(test_dir),'a')
-            file.write('{0}\n'.format(data))
-            file.close()
             
             if os.path.exists('{0}/PHsegmentation_ED.gipl'.format(data_dir)):
                 os.system('rm {0}/*.gipl'.format(data_dir))
-            if os.path.exists('{0}/sa_.nii.gz'.format(data_dir)):
-                os.system('rm {0}/sa_*.nii.gz'.format(data_dir))
+            if os.path.exists('{0}/lvsa_.nii.gz'.format(data_dir)):
+                os.system('rm {0}/lvsa_*.nii.gz'.format(data_dir))
                 os.system('rm {0}/seg_*.nii.gz'.format(data_dir))
             
             originalnii = glob.glob('{0}/*.nii'.format(data_dir))     
             if not originalnii:
-                print('  original nifit image does not exist, use sa.nii.gz')
+                print('  original nifit image does not exist, use lvsa.nii.gz')
                 originalnii = glob.glob('{0}/*.nii.gz'.format(data_dir))  
                 imagePreprocessing(originalnii[0], data_dir, atlas_dir) 
             else:
@@ -50,8 +42,8 @@ def deeplearningseg(model_path, test_dir, atlas_dir):
                 imagePreprocessing(originalnii[0], data_dir, atlas_dir)
             
             # Process ED and ES time frames
-            image_ED_name = '{0}/sa_{1}.nii.gz'.format(data_dir, 'ED')
-            image_ES_name = '{0}/sa_{1}.nii.gz'.format(data_dir, 'ES')
+            image_ED_name = '{0}/lvsa_{1}.nii.gz'.format(data_dir, 'ED')
+            image_ES_name = '{0}/lvsa_{1}.nii.gz'.format(data_dir, 'ES')
    
             if not os.path.exists(image_ED_name) or not os.path.exists(image_ES_name):
                 print(' Image {0} or {1} does not exist. Skip.'.format(image_ED_name, image_ES_name))
@@ -89,18 +81,15 @@ def deeplearningseg(model_path, test_dir, atlas_dir):
 
             for fr in ['ED', 'ES']:
        
-                image_name = '{0}/sa_{1}.nii.gz'.format(data_dir, fr)
+                image_name = '{0}/lvsa_{1}.nii.gz'.format(data_dir, fr)
 
                 # Read the image
                 print('  Reading {} ...'.format(image_name))
                 nim = nib.load(image_name)
                 image = nim.get_data()
-                
-                #imageOrg = np.squeeze(image, axis=-1).astype(np.int16)
-                #tmp = imageOrg
-                   
-                imageOrg = image
-                tmp      = image
+
+                imageOrg = np.squeeze(image, axis=-1).astype(np.int16)
+                tmp = imageOrg
 
                 X, Y, Z = image.shape[:3]
                 
@@ -144,9 +133,11 @@ def deeplearningseg(model_path, test_dir, atlas_dir):
                 table_time += [seg_time]
 
                 pred = tmp
+                
+                pred[pred==3] = 4
         
                 nim2 = nib.Nifti1Image(pred, nim.affine)
                 nim2.header['pixdim'] = nim.header['pixdim']
-                nib.save(nim2, '{0}/segs/seg_sa_{1}.nii.gz'.format(data_dir, fr))
+                nib.save(nim2, '{0}/LVSA_seg_{1}.nii.gz'.format(data_dir, fr))
 
         print('Average segmentation time = {:.3f}s per frame'.format(np.mean(table_time)))

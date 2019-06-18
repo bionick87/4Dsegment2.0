@@ -2,7 +2,6 @@ import os
 import numpy as np
 import nibabel as nib
 from numpy.linalg import inv
-import sys
 
 def rescale_intensity(image, thres=(1.0, 99.0)):
     """ Rescale the image intensity to the range of [0, 1] """
@@ -10,22 +9,28 @@ def rescale_intensity(image, thres=(1.0, 99.0)):
     image2 = image
     image2[image < val_l] = val_l
     image2[image > val_h] = val_h
-    image2 = (image2.astype(np.float32) - val_l) / (val_h - val_l + 1e-6)
+    image2 = (image2.astype(np.float32) - val_l) / (val_h - val_l)
     return image2
 
 
 def imagePreprocessing(originalNii, data_dir, atlas_dir):
      
-    os.system('headertool '
+#    os.system('headertool '
+#              '{0} '
+#              '{1}/lvsa_.nii.gz '
+#              '-reset'
+#              .format(originalNii, data_dir))
+    
+    
+    os.system('cp '
               '{0} '
-              '{1}/sa_.nii.gz '
-              '-reset'
+              '{1}/lvsa_.nii.gz'
               .format(originalNii, data_dir))
 
     os.system('temporalalign '
               '{0}/temporal.gipl '
-              '{1}/sa_.nii.gz '
-              '{1}/sa_.nii.gz ' 
+              '{1}/lvsa_.nii.gz '
+              '{1}/lvsa_.nii.gz ' 
               '-St1 0 '
               '-St2 0 '
               '-Et1 1 '
@@ -33,14 +38,14 @@ def imagePreprocessing(originalNii, data_dir, atlas_dir):
               .format(atlas_dir, data_dir))
 
     os.system('autocontrast '
-              '{0}/sa_.nii.gz '
-              '{0}/sa_.nii.gz'
+              '{0}/lvsa_.nii.gz '
+              '{0}/lvsa_.nii.gz'
               .format(data_dir))
         
     os.system('cardiacphasedetection '
-              '{0}/sa_.nii.gz '
-              '{0}/sa_ED.nii.gz '
-              '{0}/sa_ES.nii.gz'
+              '{0}/lvsa_.nii.gz '
+              '{0}/lvsa_ED.nii.gz '
+              '{0}/lvsa_ES.nii.gz'
               .format(data_dir))
     
     print('  Image preprocessing is done ...')
@@ -107,11 +112,11 @@ def clearBaseManbrance(data_dir, output_name):
     flat = True
     if flat:
         seg = np.transpose(seg, axes=(2, 0, 1))
-        seg[lastAppearSlice-slicesUsed:lastAppearSlice-1,:,:] = seg[yelastAppearSlice-slicesUsed:lastAppearSlice-1,:,:] + tmp
+        seg[lastAppearSlice-slicesUsed:lastAppearSlice-1,:,:] = seg[lastAppearSlice-slicesUsed:lastAppearSlice-1,:,:] + tmp
         seg = np.transpose(seg, axes=(1, 2, 0))
     else:
         seg[:,:,lastAppearSlice-slicesUsed:] = seg[:,:,lastAppearSlice-slicesUsed:] + lv[:,:,lastAppearSlice-slicesUsed:]
-
+    
     # save the result
     nim2 = nib.Nifti1Image(seg, nim.affine)
     nim2.header['pixdim'] = nim.header['pixdim']
@@ -158,54 +163,33 @@ def removeSegsAboveBase(data_dir, output_name):
     nib.save(nim2, '{0}/{1}'.format(data_dir, output_name))
     
 
-
-def isexists(DLSeg):
-  if os.path.isfile(DLSeg):
-      print("\n\n  ... File: "+ DLSeg +" exist!")
-  else:
-      print("\n\n  ... File: "+ DLSeg +" does not exist!")
-      sys.exit()
-
-
 def formHighResolutionImg(subject_dir, fr): 
-
-    input_file = '{0}/sizes/sa_{1}.nii.gz'.format(subject_dir, fr)
-    isexists(input_file)
-
+    
     os.system('resample ' 
-              '{0}/sizes/sa_{1}.nii.gz '
-              '{0}/sizes/sa_SR_{1}.nii.gz '
+              '{0}/lvsa_{1}.nii.gz '
+              '{0}/lvsa_SR_{1}.nii.gz '
               '-size 1.25 1.25 2'
               .format(subject_dir, fr))
         
-#    os.system('enlarge_image '
-#              '{0}/lvsa_SR_{1}.nii.gz '
-#              '{0}/lvsa_SR_{1}.nii.gz '
-#              '-z 20 '
-#              '-value 0'
-#              .format(subject_dir, fr))
-
-
-
+    os.system('enlarge_image '
+              '{0}/lvsa_SR_{1}.nii.gz '
+              '{0}/lvsa_SR_{1}.nii.gz '
+              '-z 20 '
+              '-value 0'
+              .format(subject_dir, fr))
+        
+    
 def convertImageSegment(data_dir, fr):
-    
-
-
-    a =  '{0}/seg_sa_SR_{1}.nii.gz'.format(data_dir, fr)
-    isexists(a)
-
+   
     os.system('convert '
-              '{0}/seg_sa_SR_{1}.nii.gz '
-              '{0}/PHsegmentation_{1}.gipl'
+              '{0}/seg_lvsa_SR_{1}.nii.gz '
+              '{0}/segmentation_{1}.gipl'
               .format(data_dir, fr))
     
-    os.system('cp '
-              '{0}/sa_SR_{1}.nii.gz '
-              '{0}/sa_{1}_enlarged_SR.nii.gz'
-              .format(data_dir, fr))
-
-    b =  '{0}/seg_sa_SR_{1}.nii.gz'.format(data_dir, fr)
-    isexists(b)
+#    os.system('cp '
+#              '{0}/lvsa_SR_{1}.nii.gz '
+#              '{0}/lvsa_{1}_enlarged_SR.nii.gz'
+#              .format(data_dir, fr))
     
     
 def outputVolumes(subject_dir, data_dir, subject, fr):
@@ -244,39 +228,39 @@ def outputVolumes(subject_dir, data_dir, subject, fr):
 def moveVolumes(subject_dir, sizes_dir, fr):
      
     os.system('cp '
-              '{0}/sa_{2}.nii.gz '
-              '{1}/sa_{2}.nii.gz'
+              '{0}/lvsa_{2}.nii.gz '
+              '{1}/lvsa_{2}.nii.gz'
               .format(subject_dir, sizes_dir, fr))
     
     os.system('rm '
-              '{0}/sa_{1}.nii.gz '
+              '{0}/lvsa_{1}.nii.gz '
               .format(subject_dir, fr))
     
     os.system('cp '
-              '{0}/seg_sa_{2}.nii.gz '
+              '{0}/seg_lvsa_{2}.nii.gz '
               '{1}/2D_segmentation_{2}.nii.gz'
               .format(subject_dir, sizes_dir, fr))
     
     os.system('rm '
-              '{0}/seg_sa_{1}.nii.gz '
+              '{0}/seg_lvsa_{1}.nii.gz '
               .format(subject_dir, fr))
     
     os.system('cp '
-              '{0}/sa_SR_{2}.nii.gz '
-              '{1}/sa_{2}_SR.nii.gz'
+              '{0}/lvsa_SR_{2}.nii.gz '
+              '{1}/lvsa_{2}_SR.nii.gz'
               .format(subject_dir, sizes_dir, fr))
     
     os.system('rm '
-              '{0}/sa_SR_{1}.nii.gz '
+              '{0}/lvsa_SR_{1}.nii.gz '
               .format(subject_dir, fr))
     
     os.system('cp '
-              '{0}/seg_sa_SR_{2}.nii.gz '
+              '{0}/seg_lvsa_SR_{2}.nii.gz '
               '{1}/3D_segmentation_{2}.nii.gz'
               .format(subject_dir, sizes_dir, fr))
     
     os.system('rm '
-              '{0}/seg_sa_SR_{1}.nii.gz '
+              '{0}/seg_lvsa_SR_{1}.nii.gz '
               .format(subject_dir, fr))
 
     
@@ -388,15 +372,14 @@ def refineFusionResults(data_dir, output_name, alfa):
               .format(data_dir, output_name))
     
     
-def allAtlasShapeSelection(dataset_dir,atlas3d):
+def allAtlasShapeSelection(dataset_dir):
    
     atlases_list, landmarks_list = {}, {}
-    atlas_3D_shape               = ""
-    
+            
     for fr in ['ED', 'ES']:
             
         atlases_list[fr], landmarks_list[fr] = [], [] 
-        i = 0
+                            
         for atlas in sorted(os.listdir(dataset_dir)): 
             
             atlas_dir = os.path.join(dataset_dir, atlas)
@@ -407,42 +390,31 @@ def allAtlasShapeSelection(dataset_dir,atlas3d):
                 
                 continue 
             
-            atlas_3D_shape = '{0}/segmentation_{1}_fixedup.gipl'.format(atlas_dir, fr)
-
-            
-            #if atlas3d: 
-            #    atlas_3D_shape = '{0}/segmentation_{1}_fixedup.gipl'.format(atlas_dir, fr)
-            #else: 
-            #    atlas_3D_shape = '{0}/PHsegmentation_{1}.nii.gz'.format(atlas_dir, fr) 
-
-            landmarks = '{0}/landmarks.vtk'.format(atlas_dir)
+            if os.path.isfile('{0}/segmentation_{1}.nii.gz'.format(atlas_dir, fr)):         
+                atlas_3D_shape = '{0}/segmentation_{1}.nii.gz'.format(atlas_dir, fr)
+            else: 
+                atlas_3D_shape = '{0}/segmentation_{1}.gipl'.format(atlas_dir, fr)
+           
+            landmarks = '{0}/landmarks2.vtk'.format(atlas_dir)
         
-            if i < 400:
-                if os.path.exists(atlas_3D_shape) or os.path.exists(landmarks):
-                    
-                    atlases_list[fr]   += [atlas_3D_shape]
+            if os.path.exists(atlas_3D_shape) and os.path.exists(landmarks):
                 
-                    landmarks_list[fr] += [landmarks]
-            else:
-                print(atlases_list)
-                break
+                atlases_list[fr] += [atlas_3D_shape]
             
-            i = i + 1
+                landmarks_list[fr] += [landmarks]
                  
     return atlases_list, landmarks_list
 
 
 def topSimilarAtlasShapeSelection(atlases, atlas_landmarks, subject_landmarks, tmps_dir, dofs_dir, DLSeg, param_dir, topSimilarAltasNo):            
     
-    landmarks              = False
-    nmi                    = []
-    topSimilarAtlases_list = []
-    atlasNo                = len(atlases)
+    landmarks = True
     
-    ##############
-    # for debug  #
-    ##############
-    #atlasNo = 100
+    nmi = []
+    
+    topSimilarAtlases_list = []
+    
+    atlasNo = len(atlases)
     
     os.system('rm {0}/shapenmi*.txt'.format(tmps_dir))
     
@@ -455,6 +427,14 @@ def topSimilarAtlasShapeSelection(atlases, atlas_landmarks, subject_landmarks, t
                       '{1} '
                       '-dofout {2}/shapelandmarks_{3}.dof.gz'
                       .format(subject_landmarks, atlas_landmarks[i], dofs_dir, i))
+#            
+#            os.system('transformation '
+#                      '{0} '
+#                      '{1}/{3}.nii.gz '
+#                      '-dofin {2}/shapelandmarks_{3}.dof.gz '
+#                      '-target {4}' 
+#                      .format(atlases[i], tmps_dir, dofs_dir, i, DLSeg))
+#    
         else: 
             
             os.system('areg '
