@@ -57,7 +57,7 @@ def main(pathdir,targetfile):
     movetargetfile(pathdir,targetfile)
     
 if __name__ == "__main__":
-    pathdir    = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/UKBB_40616/test_clean" 
+    pathdir    = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/UKBB_40616/1k_CMRs1" 
     targetfile = "sa"
     main(pathdir,targetfile)
 
