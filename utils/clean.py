@@ -12,8 +12,8 @@ def mkdir_dir(file_path):
 
 def getExE(path,patient,targetfile):
     exe = filename = ""
-    for file in os.listdir(os.path.join(path,patient,"LVSA")):
-        if ("LVSA" in file or "lvsa" in file) and len(file.split(".")[0]) == 4:
+    for file in os.listdir(os.path.join(path,patient)):
+        if ("SA" in file or "sa" in file) and len(file.split(".")[0]) == 2:
             filename = file.split(".")[0]
             exe      = file.split(".")[1]
     return filename,exe
@@ -38,14 +38,14 @@ def movetargetfile(pathdir,target):
             targetfile = ""
             filename,exe     = getExE(pathdir,patient,target)
             if exe == "nii":
-                targetfile   = filename + "." + exe + "." + "gz"
+                targetfile   = filename + "." + exe 
             else:
                 targetfile   = filename + "." + exe 
             # create a tmp folder
             tmp_path   = os.path.join(pathdir,patient,"TMP") 
             mkdir_dir(tmp_path)
             # move in tmp folder 
-            shutil.move(os.path.join(pathdir,patient,"LVSA",targetfile), tmp_path)
+            shutil.move(os.path.join(pathdir,patient,targetfile), tmp_path)
             # delete all folders in main folder
             deletefolders(pathdir,patient)
             # move target file in main folder 
@@ -57,10 +57,8 @@ def main(pathdir,targetfile):
     movetargetfile(pathdir,targetfile)
     
 if __name__ == "__main__":
-    pathdir    = "/home/wyedemaa/cardiac/DL_segmentation/HVOL_completed_to_segment2" #frankie
-    #pathdir    = "/home/wyedemaa@isd.csc.mrc.ac.uk/cardiac/DL_segmentation/HVOL_completed_to_segment2"
-    #pathdir    = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/DL_segmentation/Test_for_nicolo"
-    targetfile = "LVSA"
+    pathdir    = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/UKBB_40616/test_clean" 
+    targetfile = "sa"
     main(pathdir,targetfile)
 
 
