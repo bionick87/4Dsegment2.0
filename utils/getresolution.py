@@ -26,7 +26,6 @@ def scan_high_paths(high_path,target):
            break
     return  get_path
 
-
 def getnii(low_path,high_path,\
            new_path,low_files,\
            high_files,seg_files):
@@ -55,12 +54,12 @@ def main(low_path,high_path,\
          new_path,low_files,\
          high_files,seg_files):
     list_not = getnii(low_path,high_path,new_path,low_files,high_files,seg_files)
-    print(list_not)
+    print("\n ... Total missing are: "+ len(list_not))
 
 
 if __name__ == "__main__":
     low_files  = ["lvsa_ED.nii.gz","lvsa_ES.nii.gz"]
-    high_files = ["lvsa_ED_enlarged.nii.gz","lvsa_ES_enlarged.nii.gz"]
+    high_files = ["lvsa_ED_enlarged.nii","lvsa_ES_enlarged.nii"]
     seg_files  = ["segmentation_ED.gipl","segmentation_ES.gipl"]
     low_path   = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/DL_segmentation/HVOL_to_seg"
     high_path  = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/3datlas2"
