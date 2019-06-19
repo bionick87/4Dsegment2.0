@@ -17,7 +17,7 @@ def get_new_folders(new_path,patientname):
     return high_path,low_path,high_seg
 
 def scan_high_paths(high_path,target):
-    list_high_res_paths = os.lisdir(high_path)
+    list_high_res_paths = os.listdir(high_path)
     get_path            = ""
     for path in list_high_res_paths:
         if target in path:
