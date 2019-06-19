@@ -36,12 +36,12 @@ def getnii(low_path,high_path,\
         print("\n ..." + patient)
         # low resolution files 
         for fr in low_files:
-            copyfile(os.path.join(low_path,patient,fr), os.path.join(low_new_path,patient,fr))
+            copyfile(os.path.join(low_path,patient,fr), os.path.join(low_new_path,patient))
         old_high_path = scan_high_paths(high_path,patient)
         for fr in high_files:
-            copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(low_new_path,patient,fr))
+            copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(low_new_path,patient))
         for fr in seg_files:
-            copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(high_seg,patient,fr))
+            copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(high_seg,patient))
 
 def main(low_path,high_path,\
          new_path,low_files,\
