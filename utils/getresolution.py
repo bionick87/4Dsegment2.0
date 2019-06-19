@@ -20,8 +20,7 @@ def scan_high_paths(high_path,target):
     list_high_res_paths = os.listdir(high_path)
     get_path            = ""
     for path in list_high_res_paths:
-        print(type(target))
-        print(type(path.split("_")[0]))
+        type(target)
         if target in path.split("_"):
            get_path = path
            print("\n ... SONOO QUIIIIIIIIIIIIIIIIIII "+ str(get_path) +"\n")
