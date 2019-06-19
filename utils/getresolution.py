@@ -20,7 +20,6 @@ def scan_high_paths(high_path,target):
     list_high_res_paths = os.listdir(high_path)
     get_path            = ""
     for path in list_high_res_paths:
-        type(target)
         if target in path.split("_"):
            get_path = path
            break
@@ -37,16 +36,19 @@ def getnii(low_path,high_path,\
         print("\n ..." + patient)
         # low resolution files 
         old_high_path = scan_high_paths(high_path,patient)
-        if old_high_path !="":
-            for fr in low_files:
-                copyfile(os.path.join(low_path,patient,fr), os.path.join(low_new_path,patient))
-            
-            for fr in high_files:
-                copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(low_new_path,patient))
-            for fr in seg_files:
-                copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(high_seg,patient))
+        if os.path.isdir(os.path.join(low_new_path,patient)):
+            if old_high_path !="":
+                for fr in low_files:
+                    copyfile(os.path.join(low_path,patient,fr), os.path.join(low_new_path,patient))
+                
+                for fr in high_files:
+                    copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(low_new_path,patient))
+                for fr in seg_files:
+                    copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(high_seg,patient))
+            else:
+                list_not.append(patient)
+                continue
         else:
-            list_not.append(patient)
             continue
     return list_not
 
