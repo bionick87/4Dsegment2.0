@@ -20,10 +20,10 @@ def scan_high_paths(high_path,target):
     list_high_res_paths = os.listdir(high_path)
     get_path            = ""
     for path in list_high_res_paths:
-        print(path)
         if target in path:
            get_path = path
            print("\n ... "+ str(get_path) +"\n")
+           break
     return  get_path
 
 
