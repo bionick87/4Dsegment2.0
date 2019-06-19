@@ -22,8 +22,9 @@ def scan_high_paths(high_path,target):
     for path in list_high_res_paths:
         if target in path:
            get_path = path
-           print("\n ... "+ str(get_path) +"\n")
+           print("\n ... SONOO QUIIIIIIIIIIIIIIIIIII "+ str(get_path) +"\n")
            break
+    print("sONO QUIII 2 "+ str(get_path))
     return  get_path
 
 
