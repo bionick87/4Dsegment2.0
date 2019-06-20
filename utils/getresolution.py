@@ -19,11 +19,13 @@ def get_new_folders(new_path,patientname):
 def scan_high_paths(high_path,target):
     list_high_res_paths = os.listdir(high_path)
     get_path            = ""
+    flag                = False
     for path in list_high_res_paths:
         if target in path.split("_"):
            get_path = path
+           flag     = True 
            break
-    return  get_path
+    return  get_path,flag
 
 def getnii(low_path,high_path,\
            new_path,low_files,\
@@ -35,10 +37,10 @@ def getnii(low_path,high_path,\
         high_seg         = get_new_folders(new_path,patient)
         print("\n ..." + patient)
         # low resolution files 
-        old_high_path = scan_high_paths(high_path,patient)
+        old_high_path,flag = scan_high_paths(high_path,patient)
         print(old_high_path)
         if os.path.isdir(os.path.join(low_new_path,patient)):
-            if old_high_path !="":
+            if flag:
                 print("\n SONO QUI DENTRO !!!!!!!!!!!!!!!!!!!!!!!!!!")
                 for fr in low_files:
                     print(low_path,patient,fr)
