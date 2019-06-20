@@ -63,10 +63,10 @@ def main(low_path,high_path,\
     print("\n\n\n\n\n ... Total missing are: "+ len(list_not))
 
 if __name__ == "__main__":
-    low_files  = ["lvsa_ED.nii.gz","lvsa_ES.nii.gz","lvsa_.nii"]
+    low_files  = ["lvsa_SR_ED.nii.gz","lvsa_SR_ES.nii.gz"]
     high_files = ["lvsa_ED_enlarged.nii.gz","lvsa_ES_enlarged.nii.gz"]
     seg_files  = ["segmentation_ED.gipl","segmentation_ES.gipl"]
     low_path   = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/DL_segmentation/HVOL_to_seg"
     high_path  = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/3datlas2"
-    new_path   = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/UKBB_40616/dataset_new_project" 
+    new_path   = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/UKBB_40616/dataset" 
     main (low_path,high_path,new_path,low_files,high_files,seg_files)
