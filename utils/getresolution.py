@@ -39,6 +39,7 @@ def getnii(low_path,high_path,\
         print(old_high_path)
         if os.path.isdir(os.path.join(low_new_path,patient)):
             if old_high_path !="":
+                print("\n SONO QUI DENTRO !!!!!!!!!!!!!!!!!!!!!!!!!!")
                 for fr in low_files:
                     print(low_path,patient,fr)
                     print(os.path.join(low_new_path,patient))
