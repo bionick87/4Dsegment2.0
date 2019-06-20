@@ -38,9 +38,8 @@ def getnii(low_path,high_path,\
         print("\n ..." + patient)
         # low resolution files 
         old_high_path,flag = scan_high_paths(high_path,patient)
-        print(old_high_path)
-        print(flag)
-        if os.path.isdir(os.path.join(low_new_path,patient)):
+        print(os.path.join(high_path,old_high_path))
+        if os.path.isdir(os.path.join(high_path,old_high_path)):
             if flag==True:
                 for fr in low_files:
                     print(low_path,patient,fr)
