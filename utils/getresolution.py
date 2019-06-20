@@ -22,7 +22,6 @@ def scan_high_paths(high_path,target):
     flag                = False
     for path in list_high_res_paths:
         if target in path.split("_"):
-           print("CIAO NICOLO!")
            get_path = path
            flag     = True 
            break
@@ -42,8 +41,7 @@ def getnii(low_path,high_path,\
         print(old_high_path)
         print(flag)
         if os.path.isdir(os.path.join(low_new_path,patient)):
-            if flag:
-                print("\n SONO QUI DENTRO !!!!!!!!!!!!!!!!!!!!!!!!!!")
+            if flag==True:
                 for fr in low_files:
                     print(low_path,patient,fr)
                     print(os.path.join(low_new_path,patient))
