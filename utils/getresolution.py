@@ -39,8 +39,9 @@ def getnii(low_path,high_path,\
         if os.path.isdir(os.path.join(low_new_path,patient)):
             if old_high_path !="":
                 for fr in low_files:
+                    print(low_path,patient,fr)
+                    print(os.path.join(low_new_path,patient))
                     copyfile(os.path.join(low_path,patient,fr), os.path.join(low_new_path,patient))
-                
                 for fr in high_files:
                     copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(low_new_path,patient))
                 for fr in seg_files:
