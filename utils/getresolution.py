@@ -41,11 +41,11 @@ def getnii(low_path,high_path,\
         if os.path.isdir(os.path.join(high_path,old_high_path)):
             if flag==True:
                 for fr in low_files:
-                    copyfile(os.path.join(low_path,patient,fr), os.path.join(low_new_path))
+                    copyfile(os.path.join(low_path,patient,fr), os.path.join(low_new_path,fr))
                 for fr in high_files:
-                    copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(low_new_path))
+                    copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(low_new_path,fr))
                 for fr in seg_files:
-                    copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(high_seg))
+                    copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(high_seg,fr))
             else:
                 list_not.append(patient)
                 continue
