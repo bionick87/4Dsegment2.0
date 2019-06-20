@@ -36,24 +36,28 @@ def getnii(low_path,high_path,\
            high_files,seg_files):
     list_not = []   
     for patient in os.listdir(low_path):
-        print("\n ..." + patient)
-        old_high_path,flag = scan_high_paths(high_path,patient)
-        if os.path.isdir(os.path.join(high_path,old_high_path)):
-            if flag==True:
-                high_new_path,\
-                low_new_path,\
-                high_seg = get_new_folders(new_path,patient)
-                for fr in low_files:
-                    copyfile(os.path.join(low_path,patient,fr), os.path.join(low_new_path,fr))
-                for fr in high_files:
-                    copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(high_new_path,fr))
-                for fr in seg_files:
-                    copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(high_seg,fr))
+        try:
+            print("\n ..." + patient)
+            old_high_path,flag = scan_high_paths(high_path,patient)
+            if os.path.isdir(os.path.join(high_path,old_high_path)):
+                if flag==True:
+                    high_new_path,\
+                    low_new_path,\
+                    high_seg = get_new_folders(new_path,patient)
+                    for fr in low_files:
+                        copyfile(os.path.join(low_path,patient,fr), os.path.join(low_new_path,fr))
+                    for fr in high_files:
+                        copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(high_new_path,fr))
+                    for fr in seg_files:
+                        copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(high_seg,fr))
+                else:
+                    list_not.append(patient)
+                    continue
             else:
-                list_not.append(patient)
                 continue
-        else:
-            continue
+        except:
+              list_not.append(patient)
+              continue
     return list_not
 
 def main(low_path,high_path,\
