@@ -66,5 +66,5 @@ if __name__ == "__main__":
     seg_files  = ["segmentation_ED.gipl","segmentation_ES.gipl"]
     low_path   = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/DL_segmentation/HVOL_to_seg"
     high_path  = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/3datlas2"
-    new_path   = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/UKBB_40616/high_low_resolution" 
+    new_path   = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/UKBB_40616/dataset_p" 
     main (low_path,high_path,new_path,low_files,high_files,seg_files)
