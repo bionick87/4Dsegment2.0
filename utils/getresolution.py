@@ -63,7 +63,7 @@ def main(low_path,high_path,\
     print("\n\n\n\n\n ... Total missing are: "+ len(list_not))
 
 if __name__ == "__main__":
-    low_files  = ["lvsa_ED.nii.gz","lvsa_ES.nii.gz"]
+    low_files  = ["lvsa_ED.nii.gz","lvsa_ES.nii.gz","LVSA.nii","lvsa_.nii"]
     high_files = ["lvsa_ED_enlarged.nii.gz","lvsa_ES_enlarged.nii.gz"]
     seg_files  = ["segmentation_ED.gipl","segmentation_ES.gipl"]
     low_path   = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/DL_segmentation/HVOL_to_seg"
