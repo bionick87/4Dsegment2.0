@@ -43,7 +43,7 @@ def getnii(low_path,high_path,\
                 for fr in low_files:
                     copyfile(os.path.join(low_path,patient,fr), os.path.join(low_new_path,fr))
                 for fr in high_files:
-                    copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(low_new_path,fr))
+                    copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(high_new_path,fr))
                 for fr in seg_files:
                     copyfile(os.path.join(high_path,old_high_path,fr), os.path.join(high_seg,fr))
             else:
@@ -66,5 +66,5 @@ if __name__ == "__main__":
     seg_files  = ["segmentation_ED.gipl","segmentation_ES.gipl"]
     low_path   = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/DL_segmentation/HVOL_to_seg"
     high_path  = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/3datlas2"
-    new_path   = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/UKBB_40616/dataset_p" 
+    new_path   = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/UKBB_40616/dataset_new" 
     main (low_path,high_path,new_path,low_files,high_files,seg_files)
