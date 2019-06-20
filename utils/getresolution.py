@@ -33,6 +33,7 @@ def getnii(low_path,high_path,\
         high_new_path,\
         low_new_path,\
         high_seg         = get_new_folders(new_path,patient)
+        print(high_seg)
         print("\n ..." + patient)
         # low resolution files 
         old_high_path = scan_high_paths(high_path,patient)
