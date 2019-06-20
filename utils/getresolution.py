@@ -1,3 +1,7 @@
+###################
+# Nicolo Savioli  #
+###################
+
 import os 
 from shutil import copyfile
 
@@ -32,14 +36,13 @@ def getnii(low_path,high_path,\
            high_files,seg_files):
     list_not = []   
     for patient in os.listdir(low_path):
-        high_new_path,\
-        low_new_path,\
-        high_seg         = get_new_folders(new_path,patient)
         print("\n ..." + patient)
-        # low resolution files 
         old_high_path,flag = scan_high_paths(high_path,patient)
         if os.path.isdir(os.path.join(high_path,old_high_path)):
             if flag==True:
+                high_new_path,\
+                low_new_path,\
+                high_seg = get_new_folders(new_path,patient)
                 for fr in low_files:
                     copyfile(os.path.join(low_path,patient,fr), os.path.join(low_new_path,fr))
                 for fr in high_files:
@@ -57,8 +60,7 @@ def main(low_path,high_path,\
          new_path,low_files,\
          high_files,seg_files):
     list_not = getnii(low_path,high_path,new_path,low_files,high_files,seg_files)
-    print("\n ... Total missing are: "+ len(list_not))
-
+    print("\n\n\n\n\n ... Total missing are: "+ len(list_not))
 
 if __name__ == "__main__":
     low_files  = ["lvsa_ED.nii.gz","lvsa_ES.nii.gz"]
@@ -66,5 +68,5 @@ if __name__ == "__main__":
     seg_files  = ["segmentation_ED.gipl","segmentation_ES.gipl"]
     low_path   = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/DL_segmentation/HVOL_to_seg"
     high_path  = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/3datlas2"
-    new_path   = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/UKBB_40616/dataset_new" 
+    new_path   = "/home/nsavioli@isd.csc.mrc.ac.uk/cardiac/UKBB_40616/dataset_new_project" 
     main (low_path,high_path,new_path,low_files,high_files,seg_files)
